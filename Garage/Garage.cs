@@ -10,7 +10,7 @@ namespace Garage
 {
     public class Garage<T> : IEnumerable<T> where T : Vehicles
     {
-       private Vehicles[] vehicle;
+       private List<T>maxvehicle;
         private int count;
         private int maxcapacity;
      
@@ -18,14 +18,21 @@ namespace Garage
         private int MaxCapacity {get { return maxcapacity; } set { maxcapacity = value; } }
         public int Count {get { return count; }set { count = value; }}
 
-        public IEnumerator<T> GetEnumerator()
-        {
-                        throw new NotImplementedException();
-        }
+        //public IEnumerator<T> GetEnumerator()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
+        }
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return maxvehicle[i];
+            }
         }
     }
 }
