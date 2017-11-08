@@ -29,9 +29,7 @@ namespace Garage
                 }
             }
         }
-           
-            
-        public void CreateGarage()
+   public void CreateGarage()
         {
             Console.Clear();
             Console.WriteLine("How big do you want your garage :");
@@ -40,8 +38,7 @@ namespace Garage
 
             if (int.TryParse(sMaxCap,out MaxCapDesired))
             {
-                GarageHandler mcDesired = new GarageHandler();
-                mcDesired.MaxCapSetted = MaxCapDesired;
+               Garage<Vehicles> mcDesired = new Garage<Vehicles>(MaxCapDesired);
             }
             else
             {
