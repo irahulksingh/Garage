@@ -11,13 +11,13 @@ namespace Garage.Subclasses
         public Motorcycle()
         { }
 
-        public Motorcycle(int noeng, string ftype, int cvol, int noseats, double vlen)
+        public Motorcycle(string name,int noeng, string ftype, int noseats)
         {
+            Name = name;
             NoOfEngines = noeng;
             FuelType = ftype;
-            CylinderVol = cvol;
-            NoOfSeats = noseats;
-            vLength = vlen;
+           NoOfSeats = noseats;
+            
         }
 
     }

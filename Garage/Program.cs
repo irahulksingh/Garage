@@ -14,8 +14,8 @@ namespace Garage
             //GarageHandler gg = new GarageHandler();
             gg.mainmenu();
 
-                        Console.WriteLine("the garage volume is ");
-            Console.ReadLine();
+                        //Console.WriteLine("the garage volume is ");
+            //Console.ReadLine();
 
         }
     }

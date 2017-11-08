@@ -11,13 +11,13 @@ namespace Garage.Subclasses
         public Bus()
         { }
 
-        public Bus(int noeng, string ftype, int cvol, int noseats, double vlen)
+        public Bus(string name, int noeng, string ftype, int noseats)
         {
+            Name = name;
             NoOfEngines = noeng;
             FuelType = ftype;
-            CylinderVol = cvol;
             NoOfSeats = noseats;
-            vLength = vlen;
+
         }
     }
 }

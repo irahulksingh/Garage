@@ -11,13 +11,13 @@ namespace Garage.Subclasses
         public Boat()
         { }
 
-        public Boat(int noeng, string ftype, int cvol, int noseats, double vlen)
+        public Boat(string name, int noeng, string ftype, int noseats)
         {
+            Name = name;
             NoOfEngines = noeng;
             FuelType = ftype;
-            CylinderVol = cvol;
             NoOfSeats = noseats;
-            vLength = vlen;
+
         }
 
     }
