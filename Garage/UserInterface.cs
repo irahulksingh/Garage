@@ -51,17 +51,25 @@ namespace Garage
              }
         public void Allvehicles()
         {
-            Console.WriteLine("for all vehicles");
-            Console.ReadLine();
-        }
-        public void VehicleType()
-        {
-            Console.WriteLine("for vehicle type");
+            Console.Clear();
+            Garage<Vehicles> Addnew = new Garage<Vehicles>();
+            Vehicles newVeh = new Vehicles();
+            newVeh.Name = "Test";
+            newVeh.FuelType = "diesel";
+            newVeh.NoOfEngines = 2;
+            newVeh.NoOfSeats = 3;
+            Addnew.AddVehicle(newVeh);
+
+            foreach (int i  in newVeh)
+            {
+
+            }
+            Console.WriteLine("");
             Console.ReadLine();
         }
         public void ParkOrUnpark()
         {
-            Console.WriteLine("for parking and unparking");
+            Console.WriteLine("for Adding and Removing vehicles");
             Console.ReadLine();
         }
     }

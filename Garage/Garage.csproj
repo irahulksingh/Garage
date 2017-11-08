@@ -51,6 +51,7 @@
     <Compile Include="Subclasses\Car.cs" />
     <Compile Include="Subclasses\Motorcycle.cs" />
     <Compile Include="Garage.cs" />
+    <Compile Include="Subclasses\T.cs" />
     <Compile Include="Subclasses\Vehicles.cs" />
     <Compile Include="UserInterface.cs" />
   </ItemGroup>
