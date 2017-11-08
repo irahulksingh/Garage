@@ -11,22 +11,11 @@ namespace Garage
     {
         private int maxcapset;
 
-        public int MaxCapSetted
-        {
-            get { return maxcapset; }
-            set { maxcapset = value; }
-        }
-
-
+        public int MaxCapSetted {get { return maxcapset; }set { maxcapset = value; } }
         public void setMaxCap()
         {
-           // Garage<UserInterface> vehmax = new Garage<UserInterface>();
-
-            Garage<Vehicles> MaxCapSet = new Garage<Vehicles>();
-            MaxCapSet.MaxCapacity = MaxCapSetted;
-
-                              
-        }
+           Garage<Vehicles> MaxCapSet = new Garage<Vehicles>(MaxCapSetted);
+         }
     }
 
 }

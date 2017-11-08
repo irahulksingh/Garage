@@ -11,74 +11,59 @@ namespace Garage
  {
         public void mainmenu()
         {
-
-            //Motorcycle Harley = new Motorcycle(2, "Diesel", 400, 2, 1.25);
-            //Car Bentley = new Car(4, "Petrol", 800, 4, 2.4);
-            //Boat Viraat = new Boat(20, "Diesel", 2000, 10, 5.25);
-            //Airplane Jetty = new Airplane(4, "PowerPetrol", 5000, 200, 27);
-            //Bus MyBus = new Bus(2, "Diesel", 1000, 50, 5.25);
-
-            //Garage<Vehicles> vehicles;
-            //vehicles = new Garage<Vehicles>();
-            // foreach (var Veh in vehicles)
-            //    {
-            //     Console.WriteLine(Veh.GarageInfo());
-            //    }
-
             Console.WriteLine("1. Show the number of vehicles in the garage with description.");
             Console.WriteLine("2. Show all the vehicle sorted with their types.");
             Console.WriteLine("3. Park or Unpark your vehicle. ");
             Console.WriteLine("4. Create a new garage.(The old one is full)");
             Console.WriteLine("0. Exit the program.");
-            CreateGarage();
-         
-
-            //int caseSwitch = 0;
-
-            //switch (caseSwitch)
-            //{
-            //    case 1:
-            //        Allvehicles();
-            //        break;
-            //    case 2:
-            //        break;
-            //    case 3:
-
-            //        break;
-            //    case 4:
-            //        CreateGarage();
-            //        break;
-            //    case 0:
-            //        break;
-            //    default:
-            //        Console.WriteLine("*****Please Enter a value from the above list *****");
-            //        break;
- 
+            string sControl = Console.ReadLine();
+            int iControl ;
+            if(int.TryParse(sControl, out iControl))
+            { 
+            switch (iControl)
+            {
+                case 1: Allvehicles(); break;
+                case 2: VehicleType(); break;
+                case 3: ParkOrUnpark(); break;
+                case 4: CreateGarage(); break;
+                case 0: return;
+                default:Console.WriteLine("*****Please Enter a value from the above list *****"); Console.ReadLine(); break;
+                }
             }
+        }
            
             
         public void CreateGarage()
         {
-            Console.WriteLine("How big do you want your garage");
-            int MaxCapDesired = int.Parse(Console.ReadLine());
+            Console.Clear();
+            Console.WriteLine("How big do you want your garage :");
+            string sMaxCap = Console.ReadLine();
+            int MaxCapDesired;
 
-            GarageHandler MCDESIRED = new GarageHandler();
-            MCDESIRED.MaxCapSetted = MaxCapDesired;
-        }
+            if (int.TryParse(sMaxCap,out MaxCapDesired))
+            {
+                GarageHandler mcDesired = new GarageHandler();
+                mcDesired.MaxCapSetted = MaxCapDesired;
+            }
+            else
+            {
+                Console.WriteLine("invalid input"); }
+                Console.ReadLine();
+             }
         public void Allvehicles()
         {
-            Console.WriteLine("xxxxx");
-            
+            Console.WriteLine("for all vehicles");
+            Console.ReadLine();
         }
         public void VehicleType()
         {
-            Console.WriteLine("yyyyy");
-            
+            Console.WriteLine("for vehicle type");
+            Console.ReadLine();
         }
         public void ParkOrUnpark()
         {
-            Console.WriteLine("zzzzz");
-           
+            Console.WriteLine("for parking and unparking");
+            Console.ReadLine();
         }
     }
 }
