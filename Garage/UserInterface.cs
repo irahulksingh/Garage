@@ -11,10 +11,9 @@ namespace Garage
  {
         public void mainmenu()
         {
-            Console.WriteLine("1. Show the number of vehicles in the garage with description.");
-            Console.WriteLine("2. Show all the vehicle sorted with their types.");
-            Console.WriteLine("3. Park or Unpark your vehicle. ");
-            Console.WriteLine("4. Create a new garage.(The old one is full)");
+            Console.WriteLine("1. Create a Garage.");
+            Console.WriteLine("2. Add or Remove vehicles.");
+            Console.WriteLine("3. Show all vehicles");
             Console.WriteLine("0. Exit the program.");
             string sControl = Console.ReadLine();
             int iControl ;
@@ -22,10 +21,9 @@ namespace Garage
             { 
             switch (iControl)
             {
-                case 1: Allvehicles(); break;
-                case 2: VehicleType(); break;
-                case 3: ParkOrUnpark(); break;
-                case 4: CreateGarage(); break;
+                case 3: Allvehicles(); break;
+                case 2: ParkOrUnpark(); break;
+                case 1: CreateGarage(); break;
                 case 0: return;
                 default:Console.WriteLine("*****Please Enter a value from the above list *****"); Console.ReadLine(); break;
                 }
