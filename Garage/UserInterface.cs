@@ -52,19 +52,15 @@ namespace Garage
         public void Allvehicles()
         {
             Console.Clear();
-            Garage<Vehicles> Addnew = new Garage<Vehicles>();
-            Vehicles newVeh = new Vehicles();
-            newVeh.Name = "Test";
-            newVeh.FuelType = "diesel";
-            newVeh.NoOfEngines = 2;
-            newVeh.NoOfSeats = 3;
-            Addnew.AddVehicle(newVeh);
 
-            foreach (int i  in newVeh)
+            Motorcycle moto = new Motorcycle("harley", 2, "petrol", 1);
+            Garage<Vehicles> Addnew = new Garage<Vehicles>(moto);
+            Addnew.AddVehicle(moto);
+          foreach (var i  in Addnew)
             {
-
+                Console.WriteLine(i.GarageInfo());
             }
-            Console.WriteLine("");
+            //Console.WriteLine("");
             Console.ReadLine();
         }
         public void ParkOrUnpark()
