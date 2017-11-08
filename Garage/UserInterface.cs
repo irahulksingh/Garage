@@ -30,37 +30,40 @@ namespace Garage
             Console.WriteLine("3. Park or Unpark your vehicle. ");
             Console.WriteLine("4. Create a new garage.(The old one is full)");
             Console.WriteLine("0. Exit the program.");
-            Console.ReadLine();
-            
+            CreateGarage();
+         
 
-            int caseSwitch = 0;
+            //int caseSwitch = 0;
 
-            switch (caseSwitch)
-            {
-                case 1:
-                    Allvehicles();
-                    break;
-                case 2:
-                    break;
-                case 3:
+            //switch (caseSwitch)
+            //{
+            //    case 1:
+            //        Allvehicles();
+            //        break;
+            //    case 2:
+            //        break;
+            //    case 3:
 
-                    break;
-                case 4:
-                    CreateGarage();
-                    break;
-                case 0:
-                    break;
-                default:
-                    Console.WriteLine("*****Please Enter a value from the above list *****");
-                    break;
+            //        break;
+            //    case 4:
+            //        CreateGarage();
+            //        break;
+            //    case 0:
+            //        break;
+            //    default:
+            //        Console.WriteLine("*****Please Enter a value from the above list *****");
+            //        break;
  
             }
            
-            }
+            
         public void CreateGarage()
         {
             Console.WriteLine("How big do you want your garage");
-            int maxCap = int.Parse(Console.ReadLine());
+            int MaxCapDesired = int.Parse(Console.ReadLine());
+
+            GarageHandler MCDESIRED = new GarageHandler();
+            MCDESIRED.MaxCapSetted = MaxCapDesired;
         }
         public void Allvehicles()
         {

@@ -7,12 +7,26 @@ using Garage.Subclasses;
 
 namespace Garage
 {
- public class GarageHandler:Vehicles
+ public class GarageHandler
     {
-       public void setMaxCap(Garage<Vehicles> veh,int MaxCap)
+        private int maxcapset;
+
+        public int MaxCapSetted
         {
-            Garage<Vehicles> vehmax = new Garage<Vehicles>();
-                       
+            get { return maxcapset; }
+            set { maxcapset = value; }
+        }
+
+
+        public void setMaxCap()
+        {
+           // Garage<UserInterface> vehmax = new Garage<UserInterface>();
+
+            Garage<Vehicles> MaxCapSet = new Garage<Vehicles>();
+            MaxCapSet.MaxCapacity = MaxCapSetted;
+
+                              
         }
     }
+
 }

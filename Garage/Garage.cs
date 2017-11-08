@@ -15,8 +15,22 @@ namespace Garage
         private int maxcapacity;
      
 
-        private int MaxCapacity {get { return maxcapacity; } set { maxcapacity = value; } }
+        public int MaxCapacity {get { return maxcapacity; } set { maxcapacity = value; } }
         public int Count {get { return count; }set { count = value; }}
+
+
+        public Garage(int maxcap)
+        {
+            GarageHandler mcdesired = new GarageHandler();
+            mcdesired.MaxCapSetted = maxcap;
+            MaxCapacity = maxcap;
+        }
+
+        public Garage()
+        {
+            Console.WriteLine("your garage size is" + maxcapacity);
+        }
+  
 
         //public IEnumerator<T> GetEnumerator()
         //{
@@ -34,6 +48,8 @@ namespace Garage
                 yield return maxvehicle[i];
             }
         }
+
+        
     }
 }
 
