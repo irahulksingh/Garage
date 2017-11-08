@@ -10,20 +10,33 @@ namespace Garage
 {
     public class Garage<T> : IEnumerable<T> where T : Vehicles
     {
-        private List<T> maxvehicle;
+        private string garagename;
+        private T[] maxvehicle;
         private int maxcapacity;
         private int count;
 
+        public string GarageName { get { return garagename; } }
         public int MaxCapacity { get { return maxcapacity; } }
         public int Count { get { return count; } set { count = value; } }
 
 
-        public Garage(int maxCapSetted)
+        public Garage(int maxCapSetted,string Garagename)
         {
             maxcapacity = maxCapSetted;
-            Console.WriteLine("your garage size is :" + maxcapacity);
+            garagename = Garagename;
+           
+            Console.WriteLine("Your Garage Name is :"+garagename) ;
+            Console.WriteLine("Your Garage size is :" + maxcapacity);
             Console.ReadLine();
         }
+
+        public Garage(T input)
+        {
+            maxvehicle = new T[maxcapacity];
+        }
+
+
+
         IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();

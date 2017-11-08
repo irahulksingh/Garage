@@ -11,6 +11,7 @@ namespace Garage
  {
         public void mainmenu()
         {
+            Console.WriteLine("*************************************************\n              Garage Application \n*************************************************");
             Console.WriteLine("1. Create a Garage.");
             Console.WriteLine("2. Add or Remove vehicles.");
             Console.WriteLine("3. Show all vehicles");
@@ -32,13 +33,16 @@ namespace Garage
    public void CreateGarage()
         {
             Console.Clear();
+            Console.WriteLine("Create GARAGE\n**************************\n**************************");
+            Console.WriteLine("What is your garage called :");
+            string myGarage = Console.ReadLine();
             Console.WriteLine("How big do you want your garage :");
             string sMaxCap = Console.ReadLine();
             int MaxCapDesired;
 
             if (int.TryParse(sMaxCap,out MaxCapDesired))
             {
-               Garage<Vehicles> mcDesired = new Garage<Vehicles>(MaxCapDesired);
+              new Garage<Vehicles>(MaxCapDesired,myGarage);
             }
             else
             {
