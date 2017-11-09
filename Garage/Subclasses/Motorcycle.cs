@@ -15,7 +15,7 @@ namespace Garage.Subclasses
         {
             Name = name;
             NoOfEngines = noeng;
-            FuelType = ftype;
+            FuelType = ftype;                   
            NoOfSeats = noseats;
             
         }

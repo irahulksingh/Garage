@@ -51,21 +51,21 @@ namespace Garage
              }
         public void Allvehicles()
         {
+            
+        }
+        public void ParkOrUnpark()
+
+        {
             Console.Clear();
 
             Motorcycle moto = new Motorcycle("harley", 2, "petrol", 1);
             Garage<Vehicles> Addnew = new Garage<Vehicles>(moto);
             Addnew.AddVehicle(moto);
-          foreach (var i  in Addnew)
+            foreach (var i in Addnew)
             {
                 Console.WriteLine(i.GarageInfo());
             }
             //Console.WriteLine("");
-            Console.ReadLine();
-        }
-        public void ParkOrUnpark()
-        {
-            Console.WriteLine("for Adding and Removing vehicles");
             Console.ReadLine();
         }
     }
