@@ -10,45 +10,35 @@ namespace Garage
 {
     public class Garage<T> : IEnumerable<T> where T : Vehicles
     {
-        private string garagename;
-        private List<T> maxvehicle;
+       private List<T> maxvehicle;
         private int maxcapacity;
         private int count;
 
-        public string GarageName { get { return garagename; } }
+      
         public int MaxCapacity { get { return maxcapacity; } }
         public int Count { get { return count; } set { count = value; } }
 
         //public Garage()
         //{
         //}
-        public Garage(int maxCapSetted,string Garagename)
+        public Garage(int maxCapSetted)
         {
-            maxcapacity = maxCapSetted;
-            garagename = Garagename;
-            Console.WriteLine("Your Garage Name is :"+garagename) ;
-            Console.WriteLine("Your Garage size is :" + maxcapacity);
-            //Console.ReadLine();
+            maxvehicle = new List<T>();
+            maxcapacity = maxCapSetted;   
+           Console.WriteLine("Your Garage size is :" + maxcapacity + " Vehicles");
+       }
+
+       public  void addtoList (T  input)
+        {
+           
+                       if (count < maxcapacity)
+            { 
+                    maxvehicle.Add( input);
+            }
         }
 
-        //public Garage(T input)
-        //{
-        //    if(typeof(Vehicles).IsAssignableFrom(input.GetType()))
-        //    {
-        //        //maxcapacity = (input as Vehicles);
-        //        maxvehicle = new T[maxcapacity];
-        //    }
-            
-        //}
-
-        //public void AddVehicle (T input)
-        //{
-        //    if (count < maxcapacity) { maxvehicle[count++] = input;
-        //    }
-        //}
-
-        IEnumerator IEnumerable.GetEnumerator() { throw new NotImplementedException(); }
-        public IEnumerator<T> GetEnumerator() { for (int i = 0; i < count; i++) { yield return maxvehicle[i]; } }
+       IEnumerator IEnumerable.GetEnumerator() { throw new NotImplementedException(); }
+       public IEnumerator<T> GetEnumerator() { for (int i = 0; i < count; i++) { yield return maxvehicle[i]; } }
     }
 
 }

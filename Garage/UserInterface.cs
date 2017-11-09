@@ -17,11 +17,11 @@ namespace Garage
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("*************************************************\n              Garage Application \n*************************************************");
-                Console.WriteLine("1. Create a Garage.");
-                Console.WriteLine("2. Add or Remove vehicles.");
-                Console.WriteLine("3. Show all vehicles");
-                Console.WriteLine("0. Exit the program.");
+                Console.WriteLine("*************************************************\n              GARAPP \n*************************************************");
+                Console.WriteLine("1. CREATE A GARAGE.");
+                Console.WriteLine("2. PARK OR UNPARK VEHICLES.");
+                Console.WriteLine("3. SHOW ALL VEHICLES");
+                Console.WriteLine("0. EXIT.");
                 string sControl = Console.ReadLine();
                 int iControl;
                 if (int.TryParse(sControl, out iControl))
@@ -32,7 +32,7 @@ namespace Garage
                         case 2: ParkOrUnpark(); break;
                         case 3: Allvehicles(); break;
                         case 0: return;
-                        default: Console.WriteLine("*****Please Enter a value from the above list *****"); Console.ReadLine(); break;
+                        default: Console.WriteLine("*****PLEASE ENTER A VALUE FROM THE ABLOVE LIST *****"); Console.ReadLine(); break;
                     }
                 }
             }
@@ -46,31 +46,25 @@ namespace Garage
             Console.Clear();
             while (true)
             {
-                Console.WriteLine("YOU ARE CREATING A GARAGE\n");
-                Console.WriteLine("What is your garage called :");
-                string GarageNameUserInput = Console.ReadLine();
-                Console.WriteLine("How big do you want your garage :");
+                Console.Clear();
+                Console.WriteLine("\n**************************\n CREATE GARAGE\n************************");
+                Console.WriteLine("HOW BIG DO YOU WANT YOUR GARAGE TO BE :");
                 string sMaxCap = Console.ReadLine();
                 int MaxCapDesired;
 
-                if (int.TryParse(sMaxCap, out MaxCapDesired))// Ayman. Take care for nigative input in sMaxCap. Capacity can not be nigative.
+                while (!int.TryParse(sMaxCap, out MaxCapDesired))
                 {
                     if (MaxCapDesired <= 0)
                     {
-                        Console.WriteLine("You cannot enter a negative  or zero value");
+                        Console.WriteLine("INVALID INPUT!!");
                     }
-                    else
-                    {
-                        new Garage<Vehicles>(MaxCapDesired, GarageNameUserInput);
-                    }
-                }
+                   sMaxCap = Console.ReadLine();
 
-                else
-                {
-                    Console.WriteLine("invalid input");
                 }
+                new Garage<Vehicles>(MaxCapDesired);
+                Console.ReadLine();
                 Console.WriteLine("PRESS 0 TO EXIT TO MAIN MENU");
-                Console.WriteLine("PRESS 1 TO RCREATE YOUR GARAGE");
+                Console.WriteLine("PRESS 1 TO RECREATE YOUR GARAGE");
                 string inputForSeitch = Console.ReadLine();
                 switch (inputForSeitch)
                 {
@@ -114,7 +108,20 @@ namespace Garage
                         switch (input)
                         {
 
-                            case "1": Console.WriteLine("YOU ARE WORKING WITH 1 CAR\n"); break;
+                            case "1": Console.WriteLine("YOU ARE WORKING WITH 1 CAR\n");
+
+                                Car newcar = new Car();
+                                newcar.Name = "test";
+                                newcar.FuelType = "diesel";
+                                newcar.NoOfEngines = 2;
+                                newcar.NoOfSeats = 2;
+
+                                Garage<Car> garagecar = new Garage<Car>(2);
+                                garagecar.addtoList(newcar);
+
+
+
+                                break;
                             case "2": Console.WriteLine("YOU ARE WORKING WITH 2 BUS\n"); break;
                             case "3": Console.WriteLine("YOU ARE WORKING WITH 3 MOTORCYCLE\n"); break;
                             case "4": Console.WriteLine("YOU ARE WORKING WITH 4 BOAT\n"); break;
@@ -138,11 +145,6 @@ namespace Garage
                     default:
                         break;
                 }
-
-
-
-
-
 
             }
 
