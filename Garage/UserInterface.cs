@@ -7,8 +7,8 @@ using Garage.Subclasses;
 
 namespace Garage
 {
- public class UserInterface:Vehicles
- {
+    public class UserInterface : Vehicles
+    {
         public void mainmenu()
         {
             Console.WriteLine("*************************************************\n              Garage Application \n*************************************************");
@@ -17,20 +17,20 @@ namespace Garage
             Console.WriteLine("3. Show all vehicles");
             Console.WriteLine("0. Exit the program.");
             string sControl = Console.ReadLine();
-            int iControl ;
-            if(int.TryParse(sControl, out iControl))
-            { 
-            switch (iControl)
+            int iControl;
+            if (int.TryParse(sControl, out iControl))
             {
-                case 3: Allvehicles(); break;
-                case 2: ParkOrUnpark(); break;
-                case 1: CreateGarage(); break;
-                case 0: return;
-                default:Console.WriteLine("*****Please Enter a value from the above list *****"); Console.ReadLine(); break;
+                switch (iControl)
+                {
+                    case 3: Allvehicles(); break;
+                    case 2: AddorRemove(); break;
+                    case 1: CreateGarage(); break;
+                    case 0: return;
+                    default: Console.WriteLine("*****Please Enter a value from the above list *****"); Console.ReadLine(); break;
                 }
             }
         }
-   public void CreateGarage()
+        public void CreateGarage()
         {
             Console.Clear();
             Console.WriteLine("Create GARAGE\n**************************\n**************************");
@@ -40,33 +40,22 @@ namespace Garage
             string sMaxCap = Console.ReadLine();
             int MaxCapDesired;
 
-            if (int.TryParse(sMaxCap,out MaxCapDesired))
+            if (int.TryParse(sMaxCap, out MaxCapDesired))
             {
-              new Garage<Vehicles>(MaxCapDesired,myGarage);
+                new Garage<Vehicles>(MaxCapDesired, myGarage);
             }
             else
             {
-                Console.WriteLine("invalid input"); }
-                Console.ReadLine();
-             }
-        public void Allvehicles()
-        {
-            
-        }
-        public void ParkOrUnpark()
-
-        {
-            Console.Clear();
-
-            Motorcycle moto = new Motorcycle("harley", 2, "petrol", 1);
-            Garage<Vehicles> Addnew = new Garage<Vehicles>(moto);
-            Addnew.AddVehicle(moto);
-            foreach (var i in Addnew)
-            {
-                Console.WriteLine(i.GarageInfo());
+                Console.WriteLine("invalid input");
             }
-            //Console.WriteLine("");
             Console.ReadLine();
         }
+        public void Allvehicles()
+        {
+        }
+
+        public void AddorRemove()
+            {
+            }
     }
 }
