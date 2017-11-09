@@ -36,18 +36,18 @@ namespace Garage
             Console.WriteLine("Create GARAGE\n**************************\n**************************");
             Console.WriteLine("What is your garage called :");
             string myGarage = Console.ReadLine();
+
             Console.WriteLine("How big do you want your garage :");
             string sMaxCap = Console.ReadLine();
             int MaxCapDesired;
 
-            if (int.TryParse(sMaxCap, out MaxCapDesired))
-            {
-                new Garage<Vehicles>(MaxCapDesired, myGarage);
-            }
-            else
+            while (!int.TryParse(sMaxCap, out MaxCapDesired))
             {
                 Console.WriteLine("invalid input");
+                 sMaxCap = Console.ReadLine();
+
             }
+            new Garage<Vehicles>(MaxCapDesired, myGarage);
             Console.ReadLine();
         }
         public void Allvehicles()
