@@ -58,8 +58,7 @@ namespace Garage
                     sMaxCap = Console.ReadLine();
                 }
                 allCapacity = new Garage<Vehicles>(MaxCapDesired);
-                Console.ReadLine();
-                Console.WriteLine("PRESS 0 TO EXIT TO MAIN MENU");
+                Console.WriteLine("\nPRESS 0 TO EXIT TO MAIN MENU");
                 Console.WriteLine("PRESS 1 TO RECREATE YOUR GARAGE");
                 string inputForSeitch = Console.ReadLine();
                 switch (inputForSeitch)
@@ -81,10 +80,11 @@ namespace Garage
 
             while (true)
             {
-                Console.WriteLine("USE + TO ADD AND\n" +
-                                  "USE - TO REMOVE\n" +
+                Console.Clear();
+                Console.WriteLine("USE + TO ADD VEHICLE\n" +
+                                  "USE - TO REMOVE VEHICLE\n" +
                                   "USE 0 TO EXIT TO MAIN MENU\n"
-                                /*  "USE 9 TO CLEAN THE WINDOW*/);
+                                );
                 string switchinput01 = Console.ReadLine();
                 switch (switchinput01)
                 {
@@ -98,16 +98,17 @@ namespace Garage
                                       /*"TYPE 9 TO CLEAN THE WINDOW*/);
                         string input = Console.ReadLine();
                         Console.WriteLine("YOU CHOOSE {0}\n ", input);
-
+                        //
                         if (MaxCapDesired <= 0)
                         {
                             Console.Clear();
                             Console.WriteLine("++++++++++++++++++++++\n NO GARAGE  EXISTS\n" +
                                 "CREATE A GARAGE FIRST \n++++++++++++++++++++++");
                         }
+                        //
                         else
                         {
-                            //  Garage<Vehicles> newGarage = new Garage<Vehicles>(MaxCapDesired);
+                            Console.Clear();
                             switch (input)
                             {
 
@@ -182,7 +183,7 @@ namespace Garage
                                     newBoat.NoOfSeats = myBoatseats;
                                     allCapacity.addtoList(newBoat);
                                     break;
-
+                                //
                                 case "5"://child case of "+" case
                                     Console.Write("YOU ARE WORKING WITH 5 AIRPLANE\n");
                                     Airplane newAirplane = new Airplane();
@@ -205,11 +206,6 @@ namespace Garage
                                     Console.WriteLine("RETURN ONE STEP BACK\n");
                                     return;
                                 //
-                                case "9":
-                                    Console.WriteLine("CLEAN THE WINDOW");
-                                    Console.Clear();
-                                    break;
-                                //
                                 default://child case of "+" case
                                     Console.WriteLine("INVALID INPUT! ENTER SOMETHING FROM OPTIONS\n");
                                     break;
@@ -217,22 +213,28 @@ namespace Garage
                             }
                         }
                         break;// this is for +
-              
+                    case "-":
+                        Console.WriteLine("THIS IS - CASE");
+                        break;
+                    case "0":
+                        Console.WriteLine("THIS IS 0 CASE");
+                        return;
+
                 }
             }
         }
-#endregion
-#region Display all vehicles
-public void Allvehicles()
-{
-    Console.WriteLine();
-    Garage<Vehicles> showall = new Garage<Vehicles>();
-    Console.ReadLine();
-}
+        #endregion
+        #region Display all vehicles
+        public void Allvehicles()
+        {
+            Console.WriteLine();
+            Garage<Vehicles> showall = new Garage<Vehicles>();
+            Console.ReadLine();
+        }
         #endregion
     }
 }
 
-
+//fule reg. 
 
 
