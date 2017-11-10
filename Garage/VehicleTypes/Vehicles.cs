@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Garage
 {
+   /// <summary>
+   /// Vehicles PUBLIC CLASS WITH 4 PRIVETE FIELDS
+   /// " name " noofengines " fueltype " noofseats "
+   /// </summary>
    public class Vehicles
     {
         private string  name;    

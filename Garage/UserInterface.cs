@@ -47,24 +47,41 @@ namespace Garage
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("\n**************************\n CREATE GARAGE\n************************");
-                Console.WriteLine("HOW BIG DO YOU WANT YOUR GARAGE TO BE :");
+
+                //while (true)
+                // {
+
+                Console.WriteLine("**************************\n CREATE GARAGE\n************************");
+                Console.WriteLine("ENTER THE NUMBER OF YOUR GARAGES CAPACITY:\n");
                 string sMaxCap = Console.ReadLine();
                 int MaxCapDesired;
 
-                while (!int.TryParse(sMaxCap, out MaxCapDesired))
+                if (int.TryParse(sMaxCap, out MaxCapDesired))
                 {
                     if (MaxCapDesired <= 0)
                     {
-                        Console.WriteLine("INVALID INPUT!!");
+                        Console.WriteLine("\nINVALID INPUT!!\nYOU SHOULD ENTER NUMBERS TO CAPACITY OF YOUR GARAGE\n" +
+                            "PRESS ENTER TO CONTINUE.");
+                        Console.ReadLine();
+                        break;
                     }
-                   sMaxCap = Console.ReadLine();
-
+                    
                 }
+                else if (!int.TryParse(sMaxCap, out MaxCapDesired))
+                {
+                    Console.WriteLine("YOU SHOULD PUT NUMBERS. PRESS ENTER TO CONTINUE");
+                    Console.ReadLine();
+                    //return;
+                    break;//
+                }
+                else
+                {
+                    Console.WriteLine("ELSE");
+                }
+                
                 new Garage<Vehicles>(MaxCapDesired);
-                Console.ReadLine();
-                Console.WriteLine("PRESS 0 TO EXIT TO MAIN MENU");
-                Console.WriteLine("PRESS 1 TO RECREATE YOUR GARAGE");
+                Console.WriteLine("\nPRESS 0 TO EXIT TO MAIN MENU");
+                Console.WriteLine("PRESS 1 TO RECREATE YOUR GARAGE SIZE");
                 string inputForSeitch = Console.ReadLine();
                 switch (inputForSeitch)
                 {
@@ -88,11 +105,13 @@ namespace Garage
 
             while (true)
             {
-                Console.WriteLine("USE + TO ADD AND\n" +
-                                  "USE - TO REMOVE\n" +
-                                  "USE 0 TO EXIT TO MAIN MENU\n"+
-                                  "USE 9 TO CLEAN THE WINDOW");
+                Console.Clear();//
+                Console.WriteLine("USE + TO   ADD  A VIHICLE\n" +
+                                  "USE - TO REMOVE A VIHICLE\n" +
+                                  "USE 0 TO EXIT TO MAIN MENU\n"/*+
+                                  "USE 9 TO CLEAN THE WINDOW"*/);
                 string switchinput01 = Console.ReadLine();
+                Console.Clear();//
                 switch (switchinput01)
                 {
                     case "+":
@@ -101,30 +120,33 @@ namespace Garage
                                       "TYPE 3 TO ADD MOTORCYCLE\n" +
                                       "TYPE 4 TO ADD BOAT\n" +
                                       "TYPE 5 TO ADD AIRPLANE\n" +
-                                      "TYPE 0 TO EXIT TO MAIN MENU\n" +
-                                      "TYPE 9 TO CLEAN THE WINDOW");
+                                      "TYPE 0 TO EXIT TO MAIN MENU\n" /* +
+                                     "TYPE 9 TO CLEAN THE WINDOW"*/);
                         string input = Console.ReadLine();
+                        Console.Clear();
                         Console.WriteLine("YOU CHOSE {0}\n ", input);
                         switch (input)
                         {
 
-                            case "1": Console.WriteLine("YOU ARE WORKING WITH 1 CAR\n");
+                            case "1":
+                                Console.WriteLine("YOU ARE WORKING WITH 1 CAR\n");
 
                                 Car newcar = new Car();
-                                Console.WriteLine("What is the name of your car?");
+                                Console.WriteLine("WHAT IS THE NAME OF YOUR CAR?");// i typed the same message but in big leters
                                 var myCarname = Console.ReadLine();
-                                newcar.Name =myCarname;
-                                Console.WriteLine("What is the Fiel type for your car?");
+                                newcar.Name = myCarname;
+                                Console.WriteLine("WHAT IS THE FUEL TYPE FOR YOUR CAR?");// i typed the same message but in big leters
                                 var myCarFuel = Console.ReadLine();
-                                newcar.FuelType = myCarFuel ;
-                              
+                                newcar.FuelType = myCarFuel;
+
                                 newcar.NoOfEngines = 2;
                                 newcar.NoOfSeats = 2;
 
                                 Garage<Car> garagecar = new Garage<Car>(2);
                                 garagecar.addtoList(newcar);
 
-
+                                Console.WriteLine("\nSUCSESS!!! PRESS ENTER TO CONTINUE");
+                                Console.ReadLine();
 
                                 break;
                             case "2": Console.WriteLine("YOU ARE WORKING WITH 2 BUS\n"); break;
@@ -132,7 +154,7 @@ namespace Garage
                             case "4": Console.WriteLine("YOU ARE WORKING WITH 4 BOAT\n"); break;
                             case "5": Console.WriteLine("YOU ARE WORKING WITH 5 AIRPLANE\n"); break;
                             case "0": Console.WriteLine("RETURN ONE STEP BACK\n"); return;
-                            case "9": Console.WriteLine("CLEAN THE WINDOW"); Console.Clear(); break;
+                            //case "9": Console.WriteLine("CLEAN THE WINDOW"); Console.Clear(); break;
                             default: Console.WriteLine("INVALID INPUT! ENTER SOMETHING FROM OPTIONS\n"); break;
 
 
@@ -141,13 +163,15 @@ namespace Garage
 
                     case "-":
                         Console.WriteLine("!!!YOU ARE REMOVEING SOMETHING NOW!!!\n");
-                        break;  
+                        break;
                     case "0":
                         return;
-                    case "9":
+                    /*case "9":
                         Console.Clear();
-                        break;
+                        break;*/
                     default:
+                        Console.WriteLine("INVALID INPUT!!! PRESS ENTER TO CONTINUE.");
+                        Console.ReadLine();
                         break;
                 }
 
@@ -176,7 +200,7 @@ namespace Garage
         //Console.ReadLine();
     }
 
-   
+
 
 
 }
