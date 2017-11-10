@@ -18,9 +18,6 @@ namespace Garage
         public int MaxCapacity { get { return maxcapacity; } }
         public int Count { get { return count; } set { count = value; } }
 
-        //public Garage()
-        //{
-        //}
         public Garage(int maxCapSetted)
         {
             maxvehicle = new List<T>();
@@ -32,13 +29,16 @@ namespace Garage
         {      
                        if (count < maxcapacity)
             { 
-                    maxvehicle.Add( input);
+                maxvehicle.Add( input);
                 foreach (var i in maxvehicle)
                 {
                     Console.WriteLine("Your have parked a  :" + i.Name + "");
+                    
                 }
                 
             }
+            Console.WriteLine("Your Garage can have :" + (maxcapacity - maxvehicle.Count) + " more Vehicles");
+            Console.ReadLine();
         }
 
        IEnumerator IEnumerable.GetEnumerator() { throw new NotImplementedException(); }
