@@ -45,13 +45,13 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VehicleTypes\Airplane.cs" />
-    <Compile Include="VehicleTypes\Boat.cs" />
-    <Compile Include="VehicleTypes\Bus.cs" />
-    <Compile Include="VehicleTypes\Car.cs" />
-    <Compile Include="VehicleTypes\Motorcycle.cs" />
+    <Compile Include="Subclasses\Airplane.cs" />
+    <Compile Include="Subclasses\Boat.cs" />
+    <Compile Include="Subclasses\Bus.cs" />
+    <Compile Include="Subclasses\Car.cs" />
+    <Compile Include="Subclasses\Motorcycle.cs" />
     <Compile Include="Garage.cs" />
-    <Compile Include="VehicleTypes\Vehicles.cs" />
+    <Compile Include="Subclasses\Vehicles.cs" />
     <Compile Include="UserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
