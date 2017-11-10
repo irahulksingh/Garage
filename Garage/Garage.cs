@@ -32,9 +32,10 @@ namespace Garage
             //Console.ReadLine();
         }
 
-        public Garage(T input) {  maxvehicle = new T[maxcapacity]; }
+        //public Garage(T input) {  maxvehicle = new T[maxcapacity]; }
 
-        public void AddVehicle (T input) { if(count < maxcapacity) { maxvehicle[count++] = input; }}
+        public void AddVehicle (T input)
+        { if(count < maxcapacity) { maxvehicle[count++] = input; }}
 
 
 
