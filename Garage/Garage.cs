@@ -22,19 +22,25 @@ namespace Garage
         public Garage()
         {
         }
-        public Garage(int maxCapSetted,string Garagename)
+        public Garage(int maxCapSetted, string Garagename)
         {
             maxcapacity = maxCapSetted;
             garagename = Garagename;
-           
-            Console.WriteLine("Your Garage Name is :"+garagename) ;
+            maxvehicle = new T[MaxCapacity];
+            Console.WriteLine("Your Garage Name is :" + garagename);
             Console.WriteLine("Your Garage size is :" + maxcapacity);
             //Console.ReadLine();
         }
 
-        public Garage(T input) {  maxvehicle = new T[maxcapacity]; }
+        //        public Garage(T input) {  maxvehicle = new T[maxcapacity]; }
 
-        public void AddVehicle (T input) { if(count < maxcapacity) { maxvehicle[count++] = input; }}
+        public void AddVehicle(T input)
+        {
+            if (count < maxcapacity)
+            {
+                maxvehicle[count++] = input;
+            }
+        }
 
 
 
@@ -44,6 +50,6 @@ namespace Garage
     }
 
 }
-    
+
 
 

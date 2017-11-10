@@ -11,7 +11,7 @@ namespace Garage
     {
         public void mainmenu()
         {
-            Car interfaceCar = new Car("Ayman", 111, "MAN", 222);
+            
             //Garage<Car> garage = new ();
 
             while (true)
@@ -53,7 +53,7 @@ namespace Garage
                 string sMaxCap = Console.ReadLine();
                 int MaxCapDesired;
 
-                if (int.TryParse(sMaxCap, out MaxCapDesired))// Ayman. Take care for nigative input in sMaxCap. Capacity can not be nigative.
+                if (int.TryParse(sMaxCap, out MaxCapDesired))
                 {
                     if (MaxCapDesired <= 0)
                     {
@@ -114,7 +114,11 @@ namespace Garage
                         switch (input)
                         {
 
-                            case "1": Console.WriteLine("YOU ARE WORKING WITH 1 CAR\n"); break;
+                            case "1": Console.WriteLine("YOU ARE WORKING WITH 1 CAR\n");
+                                Car interfaceCar = new Car("Ayman", 111, "Rahol", 222);
+                                Garage<Car> garageCar = new Garage<Car>(100, "USERINTERFACE GARAGENAME LINE 119");
+                                garageCar.AddVehicle(interfaceCar);
+                                break;
                             case "2": Console.WriteLine("YOU ARE WORKING WITH 2 BUS\n"); break;
                             case "3": Console.WriteLine("YOU ARE WORKING WITH 3 MOTORCYCLE\n"); break;
                             case "4": Console.WriteLine("YOU ARE WORKING WITH 4 BOAT\n"); break;
