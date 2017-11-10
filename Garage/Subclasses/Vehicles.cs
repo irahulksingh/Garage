@@ -23,9 +23,10 @@ namespace Garage
         {
             return "The Vehicle Name in the garage is :" + Name +
                 "\nThe Vehicle in garage now has :" + NoOfEngines +
-                "\nThis vehicel has a Fuel type of :" + FuelType +"\nThsi vehicle has" + NoOfSeats + " seats :" ;
+                "\nThis vehicel has a Fuel type of :" + FuelType +"\nThis vehicle has" + NoOfSeats + " seats :" ;
 
         }
 
-       }
+     
+    }
 }

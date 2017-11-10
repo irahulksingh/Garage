@@ -10,39 +10,77 @@ namespace Garage
 {
     public class Garage<T> : IEnumerable<T> where T : Vehicles
     {
-        private string garagename;
-        private T[] maxvehicle;
+        private List<T> maxvehicle;
         private int maxcapacity;
         private int count;
 
-        public string GarageName { get { return garagename; } }
         public int MaxCapacity { get { return maxcapacity; } }
         public int Count { get { return count; } set { count = value; } }
+
+        public Garage(int maxCapSetted)
+        {
+            maxvehicle = new List<T>();
+            maxcapacity = maxCapSetted;
+            Console.WriteLine("Your Garage size is :" + maxcapacity + " Vehicles");
+
+        }
 
         public Garage()
         {
         }
-        public Garage(int maxCapSetted,string Garagename)
+
+        public  void addtoList (T  input)
         {
-            maxcapacity = maxCapSetted;
-            garagename = Garagename;
-           
-            Console.WriteLine("Your Garage Name is :"+garagename) ;
-            Console.WriteLine("Your Garage size is :" + maxcapacity);
-            //Console.ReadLine();
+            if (maxcapacity - maxvehicle.Count <= 0)
+            {
+                Console.WriteLine("++++++++++++++++++++++\n  SORRY  GARAGE  FULL\n++++++++++++++++++++++");
+                return;
+            }
+            if (count < maxcapacity)
+            { 
+                maxvehicle.Add( input);
+                foreach (var i in maxvehicle)
+                {
+                    Console.WriteLine("Your have parked a  :" + i.Name + "");
+                 }
+                
+            }
+            Console.WriteLine("Your Garage can have :" + (maxcapacity - maxvehicle.Count) + " more Vehicles");
+            Console.ReadLine();
         }
+        public void RemoveVeh(T input)
+        {
 
-        //public Garage(T input) {  maxvehicle = new T[maxcapacity]; }
+            if (count < maxcapacity)
+            {
+                maxvehicle.Remove(input);
+                foreach (var i in maxvehicle.Where(x => x.Name.StartsWith(x.Name))) 
+                {
+                    Console.WriteLine("Your have unparked a vehicle  :" + i.Name + "");
+                }
 
-        public void AddVehicle (T input)
-        { if(count < maxcapacity) { maxvehicle[count++] = input; }}
+            }
+            Console.WriteLine("Your Garage can have :" + (maxcapacity) + " more Vehicles");
+            Console.ReadLine();
+       }
 
+        public void AllVehicles()
+        {
+             if (maxvehicle.Count == 0)
+            {
+                Console.WriteLine("no vehicles in the garage");
+            }
+            else { 
+            foreach (var veh in maxvehicle)
+                        Console.WriteLine(veh);
+                             
+            }
+            Console.ReadLine();
+        }
+       IEnumerator IEnumerable.GetEnumerator() { throw new NotImplementedException(); }
+       public IEnumerator<T> GetEnumerator() { for (int i = 0; i < count; i++) { yield return maxvehicle[i]; } }
 
-
-
-        IEnumerator IEnumerable.GetEnumerator() { throw new NotImplementedException(); }
-        public IEnumerator<T> GetEnumerator() { for (int i = 0; i < count; i++) { yield return maxvehicle[i]; } }
-    }
+        }
 
 }
     
