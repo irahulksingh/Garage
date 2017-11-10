@@ -50,11 +50,15 @@ namespace Garage
         }
         public void RemoveVeh(T input)
         {
-
+            if (maxvehicle.Count == 0)
+            {
+                Console.WriteLine("No vehicles in the garage to remove");
+                return;
+            }
             if (count < maxcapacity)
             {
                 maxvehicle.Remove(input);
-                foreach (var i in maxvehicle.Where(x => x.Name.StartsWith(x.Name))) 
+                foreach (var i in maxvehicle.Where(x => x.Name.StartsWith(x.Name)))
                 {
                     Console.WriteLine("Your have unparked a vehicle  :" + i.Name + "");
                 }
@@ -62,7 +66,8 @@ namespace Garage
             }
             Console.WriteLine("Your Garage can have :" + (maxcapacity) + " more Vehicles");
             Console.ReadLine();
-       }
+        }
+   
 
         public void AllVehicles()
         {
@@ -79,8 +84,7 @@ namespace Garage
         }
        IEnumerator IEnumerable.GetEnumerator() { throw new NotImplementedException(); }
        public IEnumerator<T> GetEnumerator() { for (int i = 0; i < count; i++) { yield return maxvehicle[i]; } }
-
-        }
+    }
 
 }
     

@@ -218,80 +218,88 @@ namespace Garage
                         }
                         break;// this is for +
                     case "-":
-                        Console.WriteLine("TYPE 1 TO REMOVE CAR\n" +
-                                      "TYPE 2 TO REMOVE BUS\n" +
-                                      "TYPE 3 TO REMOVE MOTORCYCLE\n" +
-                                      "TYPE 4 TO REMOVE BOAT\n" +
-                                      "TYPE 5 TO REMOVE AIRPLANE\n" +
-                                      "TYPE 0 TO EXIT TO MAIN MENU\n"
-                                      /*"TYPE 9 TO CLEAN THE WINDOW*/);
-                        string input1 = Console.ReadLine();
-
-                        switch (input1)
-                        {
-
-
-                    
-                        Console.WriteLine("YOU CHOOSE {0}\n ", input1);
                     case "1":
                         Console.WriteLine("!!GIVE THE REG.NO. OF THE CAR YOU WANT TO UNPARK!!!\n");
                         Car rnewCar = new Car();
                         Console.Write("What is the Reg. no. of your Car?");
                         var rmyCarname = Console.ReadLine();
                         rnewCar.Name = rmyCarname;
-                        allCapacity.RemoveVeh((rnewCar)); break;
-                    case "2":
-                        Motorcycle rnewMotorcycle = new Motorcycle();
-                        Console.Write("What is the Reg. no. of your Motorcycle?");
-                        var rmyMotorcyclename = Console.ReadLine();
-                        rnewMotorcycle.Name = rmyMotorcyclename;
-                        allCapacity.RemoveVeh((rnewMotorcycle));
-                        break;
-                    case "3":
-                        Bus rnewBus = new Bus();
-                        Console.Write("What is the Reg. no. of your Bus?");
-                        var rmyBusname = Console.ReadLine();
-                        rnewBus.Name = rmyBusname;
-                        allCapacity.RemoveVeh((rnewBus)); break;
-                    case "4":
-                        Boat rnewBoat = new Boat();
-                        Console.Write("What is the Reg. no. of your Boat?");
-                        var rmyBoatname = Console.ReadLine();
-                        rnewBoat.Name = rmyBoatname;
-                        allCapacity.RemoveVeh((rnewBoat));
-                        break;
-                    case "5":
-                        Airplane rnewAirplane = new Airplane();
-                        Console.Write("What is the Reg. no. of your Airplane?");
-                        var rmyAirplanename = Console.ReadLine();
-                        rnewAirplane.Name = rmyAirplanename;
-                        allCapacity.RemoveVeh((rnewAirplane));
-                        break;
-                    case "0":
-                        return;
-                    case "9":
-                        Console.Clear();
-                        break;
-                    default:
-                        break;
+                        allCapacity.RemoveVeh(rnewCar); break;
+                        //Unpark();
+                        //break;
                 }
-            }
-            }
             }
         }
 
+        #region commented out
+        //                case "-":
+        //                    Console.WriteLine("TYPE 1 TO REMOVE CAR\n" + "TYPE 2 TO REMOVE BUS\n" + "TYPE 3 TO REMOVE MOTORCYCLE\n" + "TYPE 4 TO REMOVE BOAT\n" +"TYPE 5 TO REMOVE AIRPLANE\n" +
+        //                                  "TYPE 0 TO EXIT TO MAIN MENU\n"
+        //                                  /*"TYPE 9 TO CLEAN THE WINDOW*/);
+        //                    string input1 = Console.ReadLine();
+        //                    switch (input1) {
+        //                         Console.WriteLine("YOU CHOOSE {0}\n ", input1);
 
+        //                //case "2":
+        //    Motorcycle rnewMotorcycle = new Motorcycle();
+        //    Console.Write("What is the Reg. no. of your Motorcycle?");
+        //    var rmyMotorcyclename = Console.ReadLine();
+        //    rnewMotorcycle.Name = rmyMotorcyclename;
+        //    allCapacity.RemoveVeh((rnewMotorcycle));
+        //    break;
+        //case "3":
+        //    Bus rnewBus = new Bus();
+        //    Console.Write("What is the Reg. no. of your Bus?");
+        //    var rmyBusname = Console.ReadLine();
+        //    rnewBus.Name = rmyBusname;
+        //    allCapacity.RemoveVeh((rnewBus)); break;
+        //case "4":
+        //    Boat rnewBoat = new Boat();
+        //    Console.Write("What is the Reg. no. of your Boat?");
+        //    var rmyBoatname = Console.ReadLine();
+        //    rnewBoat.Name = rmyBoatname;
+        //    allCapacity.RemoveVeh((rnewBoat));
+        //    break;
+        //case "5":
+        //    Airplane rnewAirplane = new Airplane();
+        //    Console.Write("What is the Reg. no. of your Airplane?");
+        //    var rmyAirplanename = Console.ReadLine();
+        //    rnewAirplane.Name = rmyAirplanename;
+        //    allCapacity.RemoveVeh((rnewAirplane));
+        //    break;
+        //case "0":
+        //    return;
+        //case "9":
+        //    Console.Clear();
+        //    break;
+        //default:
+        //    break;
+
+        #endregion
+
+        //public void Unpark()
+        //{
+
+        //    Console.WriteLine("PLEASE PROVIDE THE REGISTRATION NUMBER OF THE VEHICLE TO BE UNPARKED ?");
+        //    string vehType = Console.ReadLine();
+
+
+        //    allCapacity.RemoveVeh.Name(vehType);
+
+        //}
 
 
         #endregion
         #region Display all vehicles
         public void Allvehicles()
-    {
-        Console.WriteLine();
-        Garage<Vehicles> showall = new Garage<Vehicles>();
-        Console.ReadLine();
-    }
+        {
+            Console.WriteLine();
+            Garage<Vehicles> showall = new Garage<Vehicles>();
+            Console.ReadLine();
+        }
         #endregion
     }
 }
+
+
 
