@@ -24,16 +24,20 @@ namespace Garage
         public Garage(int maxCapSetted)
         {
             maxvehicle = new List<T>();
-            maxcapacity = maxCapSetted;   
-           Console.WriteLine("Your Garage size is :" + maxcapacity + " Vehicles");
-       }
+            maxcapacity = maxCapSetted;
+            Console.WriteLine("Your Garage size is :" + maxcapacity + " Vehicles");
+        }
 
        public  void addtoList (T  input)
-        {
-           
+        {      
                        if (count < maxcapacity)
             { 
                     maxvehicle.Add( input);
+                foreach (var i in maxvehicle)
+                {
+                    Console.WriteLine("Your have parked a  :" + i.Name + "");
+                }
+                
             }
         }
 

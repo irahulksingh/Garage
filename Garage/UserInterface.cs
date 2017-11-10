@@ -111,8 +111,13 @@ namespace Garage
                             case "1": Console.WriteLine("YOU ARE WORKING WITH 1 CAR\n");
 
                                 Car newcar = new Car();
-                                newcar.Name = "test";
-                                newcar.FuelType = "diesel";
+                                Console.WriteLine("What is the name of your car?");
+                                var myCarname = Console.ReadLine();
+                                newcar.Name =myCarname;
+                                Console.WriteLine("What is the Fiel type for your car?");
+                                var myCarFuel = Console.ReadLine();
+                                newcar.FuelType = myCarFuel ;
+                              
                                 newcar.NoOfEngines = 2;
                                 newcar.NoOfSeats = 2;
 
