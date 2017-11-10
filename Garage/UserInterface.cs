@@ -221,12 +221,6 @@ namespace Garage
                 }
             }
         }
-    }
-}
-
-
-
-
 #endregion
 #region Display all vehicles
 public void Allvehicles()
@@ -238,4 +232,7 @@ public void Allvehicles()
         #endregion
     }
 }
+
+
+
 
