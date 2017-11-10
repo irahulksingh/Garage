@@ -10,10 +10,10 @@ namespace Garage
     public class UserInterface : Vehicles
     {
         public int MaxCapDesired;
+        private Garage<Vehicles> allCapacity;
+        #region Main Menu 
         public void mainmenu()
         {
-            Car interfaceCar = new Car("Ayman", 111, "MAN", 222);
-            //Garage<Car> garage = new ();
 
             while (true)
             {
@@ -38,10 +38,8 @@ namespace Garage
                 }
             }
         }
-
-        /// <summary>
-        /// FUNCTION/METHOD TO CREATE A GARAGE NAME AND SIZE 
-        /// </summary>
+        #endregion
+        #region CreateGarage
         public void CreateGarage()
         {
             Console.Clear();
@@ -51,18 +49,15 @@ namespace Garage
                 Console.WriteLine("\n**************************\n CREATE GARAGE\n************************");
                 Console.WriteLine("HOW BIG DO YOU WANT YOUR GARAGE TO BE :");
                 string sMaxCap = Console.ReadLine();
-              
-
                 while (!int.TryParse(sMaxCap, out MaxCapDesired))
                 {
                     if (MaxCapDesired <= 0)
                     {
                         Console.WriteLine("INVALID INPUT!!");
                     }
-                   sMaxCap = Console.ReadLine();
-
+                    sMaxCap = Console.ReadLine();
                 }
-                new Garage<Vehicles>(MaxCapDesired);
+                allCapacity = new Garage<Vehicles>(MaxCapDesired);
                 Console.ReadLine();
                 Console.WriteLine("PRESS 0 TO EXIT TO MAIN MENU");
                 Console.WriteLine("PRESS 1 TO RECREATE YOUR GARAGE");
@@ -78,12 +73,9 @@ namespace Garage
                 }
             }
         }
-
-        /// <summary>
-        /// THIS IS TO ADD OR REMOVE THINGS
-        /// </summary>
+        #endregion
+        #region Park and unpark vehicles
         public void ParkOrUnpark()
-
         {
             Console.Clear();
 
@@ -91,126 +83,190 @@ namespace Garage
             {
                 Console.WriteLine("USE + TO ADD AND\n" +
                                   "USE - TO REMOVE\n" +
-                                  "USE 0 TO EXIT TO MAIN MENU\n"+
-                                  "USE 9 TO CLEAN THE WINDOW");
+                                  "USE 0 TO EXIT TO MAIN MENU\n"
+                                /*  "USE 9 TO CLEAN THE WINDOW*/);
                 string switchinput01 = Console.ReadLine();
                 switch (switchinput01)
                 {
-                    case "+":
+                    case "+":// mother case
                         Console.WriteLine("TYPE 1 TO ADD CAR\n" +
                                       "TYPE 2 TO ADD BUS\n" +
                                       "TYPE 3 TO ADD MOTORCYCLE\n" +
                                       "TYPE 4 TO ADD BOAT\n" +
                                       "TYPE 5 TO ADD AIRPLANE\n" +
-                                      "TYPE 0 TO EXIT TO MAIN MENU\n" +
-                                      "TYPE 9 TO CLEAN THE WINDOW");
+                                      "TYPE 0 TO EXIT TO MAIN MENU\n"
+                                      /*"TYPE 9 TO CLEAN THE WINDOW*/);
                         string input = Console.ReadLine();
-                        Console.WriteLine("YOU CHOSE {0}\n ", input);
-                        switch (input)
+                        Console.WriteLine("YOU CHOOSE {0}\n ", input);
+
+                        if (MaxCapDesired <= 0)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("++++++++++++++++++++++\n NO GARAGE  EXISTS\n" +
+                                "CREATE A GARAGE FIRST \n++++++++++++++++++++++");
+                        }
+                        else
+                        {
+                            //  Garage<Vehicles> newGarage = new Garage<Vehicles>(MaxCapDesired);
+                            switch (input)
+                            {
+
+                                case "1": //child case of "+" case
+                                    Console.WriteLine("YOU ARE WORKING WITH 1 CAR\n");
+                                    Car newcar = new Car();
+                                    Console.WriteLine("What is the Reg. no. of your car?");
+                                    var myCarname = Console.ReadLine();
+                                    newcar.Name = myCarname;
+                                    Console.WriteLine("What is the Fuel type for your car?");
+                                    var myCarFuel = Console.ReadLine();
+                                    newcar.FuelType = myCarFuel;
+                                    Console.WriteLine("How many engines does your car has?");
+                                    var myCarEng = int.Parse(Console.ReadLine());
+                                    newcar.NoOfEngines = myCarEng;
+                                    Console.WriteLine("How many seats dows your Car has?");
+                                    var myCarseats = int.Parse(Console.ReadLine());
+                                    newcar.NoOfSeats = myCarseats;
+                                    allCapacity.addtoList(newcar);
+                                    break;
+                                //
+                                case "2"://child case of "+" case
+                                    Console.WriteLine("YOU ARE WORKING WITH 2 BUS\n");
+                                    Bus newBus = new Bus();
+                                    Console.WriteLine("What is the Reg. no. of your Bus?");
+                                    var myBusname = Console.ReadLine();
+                                    newBus.Name = myBusname;
+                                    Console.WriteLine("What is the Fuel type for your Bus?");
+                                    var myBusFuel = Console.ReadLine();
+                                    newBus.FuelType = myBusFuel;
+                                    Console.WriteLine("How many engines does your Bus has?");
+                                    var myBusEng = int.Parse(Console.ReadLine());
+                                    newBus.NoOfEngines = myBusEng;
+                                    Console.WriteLine("How many seats dows your Bus has?");
+                                    var myBusseats = int.Parse(Console.ReadLine());
+                                    newBus.NoOfSeats = myBusseats;
+                                    allCapacity.addtoList(newBus);
+                                    break;
+                                //
+                                case "3"://child case of "+" case
+                                    Console.WriteLine("YOU ARE WORKING WITH 3 MOTORCYCLE\n");
+                                    Motorcycle newMotorcycle = new Motorcycle();
+                                    Console.WriteLine("What is the Reg. no. of your Motorcycle?");
+                                    var myMotorcyclename = Console.ReadLine();
+                                    newMotorcycle.Name = myMotorcyclename;
+                                    Console.WriteLine("What is the Fuel type for your Motorcycle?");
+                                    var myMotorcycleFuel = Console.ReadLine();
+                                    newMotorcycle.FuelType = myMotorcycleFuel;
+                                    Console.WriteLine("How many engines does your Motorcycle has?");
+                                    var myMotorcycleEng = int.Parse(Console.ReadLine());
+                                    newMotorcycle.NoOfEngines = myMotorcycleEng;
+                                    Console.WriteLine("How many seats dows your Motorcycle has?");
+                                    var myMotorcycleseats = int.Parse(Console.ReadLine());
+                                    newMotorcycle.NoOfSeats = myMotorcycleseats;
+                                    allCapacity.addtoList(newMotorcycle);
+                                    break;
+                                //
+                                case "4"://child case of "+" case
+                                    Console.WriteLine("YOU ARE WORKING WITH 4 BOAT\n");
+                                    Boat newBoat = new Boat();
+                                    Console.WriteLine("What is the Reg. no. of your Boat?");
+                                    var myBoatname = Console.ReadLine();
+                                    newBoat.Name = myBoatname;
+                                    Console.WriteLine("What is the Fuel type for your Boat?");
+                                    var myBoatFuel = Console.ReadLine();
+                                    newBoat.FuelType = myBoatFuel;
+                                    Console.WriteLine("How many engines does your Boat has?");
+                                    var myBoatEng = int.Parse(Console.ReadLine());
+                                    newBoat.NoOfEngines = myBoatEng;
+                                    Console.WriteLine("How many seats dows your Boat has?");
+                                    var myBoatseats = int.Parse(Console.ReadLine());
+                                    newBoat.NoOfSeats = myBoatseats;
+                                    allCapacity.addtoList(newBoat);
+                                    break;
+
+                                case "5"://child case of "+" case
+                                    Console.Write("YOU ARE WORKING WITH 5 AIRPLANE\n");
+                                    Airplane newAirplane = new Airplane();
+                                    Console.Write("What is the Reg. no. of your Airplane?");
+                                    var myAirplanename = Console.ReadLine();
+                                    newAirplane.Name = myAirplanename;
+                                    Console.Write("What is the Fuel type for your Airplane?");
+                                    var myAirplaneFuel = Console.ReadLine();
+                                    newAirplane.FuelType = myAirplaneFuel;
+                                    Console.Write("How many engines does your Airplane has?");
+                                    var myAirplaneEng = int.Parse(Console.ReadLine());
+                                    newAirplane.NoOfEngines = myAirplaneEng;
+                                    Console.Write("How many seats dows your Airplane has?");
+                                    var myAirplaneseats = int.Parse(Console.ReadLine());
+                                    newAirplane.NoOfSeats = myAirplaneseats;
+                                    allCapacity.addtoList(newAirplane);
+                                    break;
+                                //
+                                case "0"://child case of "+" case
+                                    Console.WriteLine("RETURN ONE STEP BACK\n");
+                                    return;
+                                //
+                                case "9":
+                                    Console.WriteLine("CLEAN THE WINDOW");
+                                    Console.Clear();
+                                    break;
+                                //
+                                default://child case of "+" case
+                                    Console.WriteLine("INVALID INPUT! ENTER SOMETHING FROM OPTIONS\n");
+                                    break;
+                                    //
+                            }
+                        }
+                        break;// this is for +
+                    case "-":
+                        Console.WriteLine("TYPE 1 TO REMOVE CAR\n" +
+                                      "TYPE 2 TO REMOVE BUS\n" +
+                                      "TYPE 3 TO REMOVE MOTORCYCLE\n" +
+                                      "TYPE 4 TO REMOVE BOAT\n" +
+                                      "TYPE 5 TO REMOVE AIRPLANE\n" +
+                                      "TYPE 0 TO EXIT TO MAIN MENU\n"
+                                      /*"TYPE 9 TO CLEAN THE WINDOW*/);
+                        string input1 = Console.ReadLine();
+
+                        switch (input1)
                         {
 
-                            case "1": Console.WriteLine("YOU ARE WORKING WITH 1 CAR\n");
 
-                                Car newcar = new Car();
-                                Console.WriteLine("What is the name of your car?");
-                                var myCarname = Console.ReadLine();
-                                newcar.Name =myCarname;
-                                Console.WriteLine("What is the Fuel type for your car?");
-                                var myCarFuel = Console.ReadLine();
-                                newcar.FuelType = myCarFuel ;
-                                Console.WriteLine("How many engines does your car has?");
-                                var myCarEng =int.Parse (Console.ReadLine());
-                                newcar.NoOfEngines = myCarEng;
-                                Console.WriteLine("How many seats dows your Car has?");
-                                var myCarseats =int.Parse(Console.ReadLine());
-                                newcar.NoOfSeats   = myCarseats;
-                                Garage<Car> garagecar = new Garage<Car>(MaxCapDesired);
-                                garagecar.addtoList(newcar);
-
-
-
-                                break;
-                            case "2": Console.WriteLine("YOU ARE WORKING WITH 2 BUS\n");
-                                Bus newBus = new Bus();
-                                Console.WriteLine("What is the name of your Bus?");
-                                var myBusname = Console.ReadLine();
-                                newBus.Name = myBusname;
-                                Console.WriteLine("What is the Fuel type for your Bus?");
-                                var myBusFuel = Console.ReadLine();
-                                newBus.FuelType = myBusFuel;
-                                Console.WriteLine("How many engines does your Bus has?");
-                                var myBusEng = int.Parse(Console.ReadLine());
-                                newBus.NoOfEngines = myBusEng;
-                                Console.WriteLine("How many seats dows your Bus has?");
-                                var myBusseats = int.Parse(Console.ReadLine());
-                                newBus.NoOfSeats = myBusseats;
-                                Garage<Bus> garageBus = new Garage<Bus>(MaxCapDesired);
-                                garageBus.addtoList(newBus);
-
-                                break;
-                            case "3": Console.WriteLine("YOU ARE WORKING WITH 3 MOTORCYCLE\n");
-                                Motorcycle newMotorcycle = new Motorcycle();
-                                Console.WriteLine("What is the name of your Motorcycle?");
-                                var myMotorcyclename = Console.ReadLine();
-                                newMotorcycle.Name = myMotorcyclename;
-                                Console.WriteLine("What is the Fuel type for your Motorcycle?");
-                                var myMotorcycleFuel = Console.ReadLine();
-                                newMotorcycle.FuelType = myMotorcycleFuel;
-                                Console.WriteLine("How many engines does your Motorcycle has?");
-                                var myMotorcycleEng = int.Parse(Console.ReadLine());
-                                newMotorcycle.NoOfEngines = myMotorcycleEng;
-                                Console.WriteLine("How many seats dows your Motorcycle has?");
-                                var myMotorcycleseats = int.Parse(Console.ReadLine());
-                                newMotorcycle.NoOfSeats = myMotorcycleseats;
-                                Garage<Motorcycle> garageMotorcycle = new Garage<Motorcycle>(MaxCapDesired);
-                                garageMotorcycle.addtoList(newMotorcycle);
-                                break;
-                            case "4": Console.WriteLine("YOU ARE WORKING WITH 4 BOAT\n");
-                                Boat newBoat = new Boat();
-                                Console.WriteLine("What is the name of your Boat?");
-                                var myBoatname = Console.ReadLine();
-                                newBoat.Name = myBoatname;
-                                Console.WriteLine("What is the Fuel type for your Boat?");
-                                var myBoatFuel = Console.ReadLine();
-                                newBoat.FuelType = myBoatFuel;
-                                Console.WriteLine("How many engines does your Boat has?");
-                                var myBoatEng = int.Parse(Console.ReadLine());
-                                newBoat.NoOfEngines = myBoatEng;
-                                Console.WriteLine("How many seats dows your Boat has?");
-                                var myBoatseats = int.Parse(Console.ReadLine());
-                                newBoat.NoOfSeats = myBoatseats;
-                                Garage<Boat> garageBoat = new Garage<Boat>(MaxCapDesired);
-                                garageBoat.addtoList(newBoat);
-                                break;
-                            case "5": Console.WriteLine("YOU ARE WORKING WITH 5 AIRPLANE\n");
-                                Airplane newAirplane = new Airplane();
-                                Console.WriteLine("What is the name of your Airplane?");
-                                var myAirplanename = Console.ReadLine();
-                                newAirplane.Name = myAirplanename;
-                                Console.WriteLine("What is the Fuel type for your Airplane?");
-                                var myAirplaneFuel = Console.ReadLine();
-                                newAirplane.FuelType = myAirplaneFuel;
-                                Console.WriteLine("How many engines does your Airplane has?");
-                                var myAirplaneEng = int.Parse(Console.ReadLine());
-                                newAirplane.NoOfEngines = myAirplaneEng;
-                                Console.WriteLine("How many seats dows your Airplane has?");
-                                var myAirplaneseats = int.Parse(Console.ReadLine());
-                                newAirplane.NoOfSeats = myAirplaneseats;
-                                Garage<Airplane> garageAirplane = new Garage<Airplane>(MaxCapDesired);
-                                garageAirplane.addtoList(newAirplane);
-
-                                break;
-                            case "0": Console.WriteLine("RETURN ONE STEP BACK\n"); return;
-                            case "9": Console.WriteLine("CLEAN THE WINDOW"); Console.Clear(); break;
-                            default: Console.WriteLine("INVALID INPUT! ENTER SOMETHING FROM OPTIONS\n"); break;
-
-
-                        }
+                    
+                        Console.WriteLine("YOU CHOOSE {0}\n ", input1);
+                    case "1":
+                        Console.WriteLine("!!GIVE THE REG.NO. OF THE CAR YOU WANT TO UNPARK!!!\n");
+                        Car rnewCar = new Car();
+                        Console.Write("What is the Reg. no. of your Car?");
+                        var rmyCarname = Console.ReadLine();
+                        rnewCar.Name = rmyCarname;
+                        allCapacity.RemoveVeh((rnewCar)); break;
+                    case "2":
+                        Motorcycle rnewMotorcycle = new Motorcycle();
+                        Console.Write("What is the Reg. no. of your Motorcycle?");
+                        var rmyMotorcyclename = Console.ReadLine();
+                        rnewMotorcycle.Name = rmyMotorcyclename;
+                        allCapacity.RemoveVeh((rnewMotorcycle));
                         break;
-
-                    case "-":
-                        Console.WriteLine("!!!YOU ARE REMOVEING SOMETHING NOW!!!\n");
-                        break;  
+                    case "3":
+                        Bus rnewBus = new Bus();
+                        Console.Write("What is the Reg. no. of your Bus?");
+                        var rmyBusname = Console.ReadLine();
+                        rnewBus.Name = rmyBusname;
+                        allCapacity.RemoveVeh((rnewBus)); break;
+                    case "4":
+                        Boat rnewBoat = new Boat();
+                        Console.Write("What is the Reg. no. of your Boat?");
+                        var rmyBoatname = Console.ReadLine();
+                        rnewBoat.Name = rmyBoatname;
+                        allCapacity.RemoveVeh((rnewBoat));
+                        break;
+                    case "5":
+                        Airplane rnewAirplane = new Airplane();
+                        Console.Write("What is the Reg. no. of your Airplane?");
+                        var rmyAirplanename = Console.ReadLine();
+                        rnewAirplane.Name = rmyAirplanename;
+                        allCapacity.RemoveVeh((rnewAirplane));
+                        break;
                     case "0":
                         return;
                     case "9":
@@ -219,33 +275,23 @@ namespace Garage
                     default:
                         break;
                 }
-
             }
-
+            }
+            }
         }
 
 
-        /// <summary>
-        /// WHAT IS THE POINT OF THIS METHOD???
-        /// </summary>
+
+
+        #endregion
+        #region Display all vehicles
         public void Allvehicles()
-        {
-            Console.WriteLine("YOUR GARAGE NAME IS SIZE IS ");
-
-        }
-
-        //Motorcycle moto = new Motorcycle("harley", 2, "petrol", 1);
-        //Garage<Vehicles> Addnew = new Garage<Vehicles>(moto);
-        //Addnew.AddVehicle(moto);
-        //foreach (var i in Addnew)
-        //{
-        //    Console.WriteLine(i.GarageInfo());
-        //}
-        //Console.WriteLine("");
-        //Console.ReadLine();
+    {
+        Console.WriteLine();
+        Garage<Vehicles> showall = new Garage<Vehicles>();
+        Console.ReadLine();
     }
-
-   
-
-
+        #endregion
+    }
 }
+
