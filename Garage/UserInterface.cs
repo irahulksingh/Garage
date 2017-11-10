@@ -31,7 +31,7 @@ namespace Garage
                     {
                         case 1: CreateGarage(); break;
                         case 2: ParkOrUnpark(); break;
-                        case 3: Allvehicles(); break;
+                        //case 3: Allvehicles(); break;
                         case 0: return;
                         default: Console.WriteLine("*****PLEASE ENTER A VALUE FROM THE ABLOVE LIST *****"); Console.ReadLine(); break;
                     }
@@ -228,14 +228,4 @@ namespace Garage
 
 
 #endregion
-#region Display all vehicles
-public void Allvehicles()
-{
-    Console.WriteLine();
-    Garage<Vehicles> showall = new Garage<Vehicles>();
-    Console.ReadLine();
-}
-        #endregion
-    }
-}
 
