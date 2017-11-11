@@ -63,18 +63,17 @@ namespace Garage
             {
                 string Regnotodel = input.Name;
                 maxvehicle.RemoveAll(x => x.Name.StartsWith(Regnotodel));
-                Console.WriteLine("Your have unparked a vehicle  :" + Regnotodel + "");
+                Console.WriteLine("YOU HAVE UNPARKED A VEHICLE  :" + Regnotodel + "");
                 count--;
             }
-            Console.WriteLine("Your Garage can have :" + (maxcapacity - count) + " more Vehicles");
+            Console.WriteLine("YOUR GARAGE CAN HAVE :" + (maxcapacity - count) + " MORE VEHICLES");
             Console.ReadLine();
         }
 
 
         public void AllVehicles()
         {
-            //Car CarName = new Car();
-            //Bus Busname = new Bus();
+           
             if (maxvehicle.Count == 0)
             {
                 Console.WriteLine("NO VEHICLES IN THE GARAGE");
@@ -84,13 +83,35 @@ namespace Garage
                 foreach (var veh in maxvehicle)
 
                     Console.WriteLine(TestVeh.GarageInfo());
-                //Console.WriteLine("vehicle Reg No:"+ veh.Name.ToString());
-                Console.WriteLine("THE NUMBER OF VEHICLES IN THE GARAGE IS :" + maxvehicle.Count.ToString());
+                    Console.WriteLine("THE NUMBER OF VEHICLES IN THE GARAGE IS :" + maxvehicle.Count.ToString());
 
             }
-            //Console.WriteLine("NO OF CARS IN THE GARAGE :" + CarName.Name.Count());//think about how to get a value of vehicle type from the garage class
+           
             Console.ReadLine();
         }
+
+
+        public void VEHICLECOUNTS()
+        {
+            Console.Clear();
+            int ccount = maxvehicle.Where(x => x.VehTYPE.Contains("CAR")).Count();
+            Console.WriteLine("THE NUMBER OF CARS IN THE GARAGE IS:" + ccount);
+
+            int ccount1 = maxvehicle.Where(x => x.VehTYPE.Contains("MOTORCYCLE")).Count();
+            Console.WriteLine("THE NUMBER OF MOTORCYCLE IN THE GARAGE IS:" + ccount1);
+
+            int ccount2 = maxvehicle.Where(x => x.VehTYPE.Contains("BUS")).Count();
+            Console.WriteLine("THE NUMBER OF BUS IN THE GARAGE IS:" + ccount2);
+
+            int ccount3 = maxvehicle.Where(x => x.VehTYPE.Contains("AIRPLANE")).Count();
+            Console.WriteLine("THE NUMBER OF AIRPLANE IN THE GARAGE IS:" + ccount3);
+
+            int ccount4 = maxvehicle.Where(x => x.VehTYPE.Contains("BOAT")).Count();
+            Console.WriteLine("THE NUMBER OF BOAT IN THE GARAGE IS:" + ccount4);
+            Console.ReadLine();
+
+        }
+
         IEnumerator IEnumerable.GetEnumerator() { throw new NotImplementedException(); }
         public IEnumerator<T> GetEnumerator() { for (int i = 0; i < count; i++) { yield return maxvehicle[i]; } }
     }

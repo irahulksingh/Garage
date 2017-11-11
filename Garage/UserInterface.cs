@@ -22,6 +22,7 @@ namespace Garage
                 Console.WriteLine("1. CREATE A GARAGE.");
                 Console.WriteLine("2. PARK OR UNPARK VEHICLES.");
                 Console.WriteLine("3. SHOW ALL VEHICLES");
+                Console.WriteLine("4. COUNT OF VEHICLES");
                 Console.WriteLine("0. EXIT.");
                 string sControl = Console.ReadLine();
                 int iControl;
@@ -32,6 +33,7 @@ namespace Garage
                         case 1: CreateGarage(); break;
                         case 2: ParkOrUnpark(); break;
                         case 3: ShowAllVehicles(); break;
+                        case 4: Vehcount(); break;
                         case 0: return;
                         default: Console.WriteLine("*****PLEASE ENTER A VALUE FROM THE ABLOVE LIST *****"); Console.ReadLine(); break;
                     }
@@ -259,7 +261,7 @@ namespace Garage
                                 Console.Write("WHAT IS THE RREG. NO OF YOUR CAR ?");
                                 var rmyCarname = Console.ReadLine();
                                 rnewCar.Name = rmyCarname;
-                                //if (rnewCar.Name == rmyCarname)
+                                //if (rnewCar!= null && rnewCar.Name == rmyCarname)
                                 //{
                                     allCapacity.RemoveVeh(rnewCar);
                                 //}
@@ -357,6 +359,19 @@ namespace Garage
            
 
 
+        }
+
+        public void Vehcount()
+        {
+            if(allCapacity != null)
+            { 
+            allCapacity.VEHICLECOUNTS();
+            }
+            else
+            {
+                Console.WriteLine("NO GARAGE NO VEHICLES :(");
+                Console.ReadLine();
+            }
         }
     }
 }
