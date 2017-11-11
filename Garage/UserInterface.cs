@@ -18,7 +18,7 @@ namespace Garage
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("*************************************************\n              GARAPP \n*************************************************");
+                Console.WriteLine("*************************************************\n             MY GARAGE APPLICATION\n*************************************************");
                 Console.WriteLine("1. CREATE A GARAGE.");
                 Console.WriteLine("2. PARK OR UNPARK VEHICLES.");
                 Console.WriteLine("3. SHOW ALL VEHICLES");
@@ -49,6 +49,12 @@ namespace Garage
                 Console.WriteLine("\n**************************\n CREATE GARAGE\n************************");
                 Console.WriteLine("HOW BIG DO YOU WANT YOUR GARAGE TO BE :");
                 string sMaxCap = Console.ReadLine();
+                if(sMaxCap == "0")
+                {
+                    Console.WriteLine("GARAGE SIZE CANNOT BE ZERO !!");
+                    Console.ReadLine();
+                    return;
+                }
                 while (!int.TryParse(sMaxCap, out MaxCapDesired))
                 {
                     if (MaxCapDesired <= 0)
@@ -58,18 +64,16 @@ namespace Garage
                     sMaxCap = Console.ReadLine();
                 }
                 allCapacity = new Garage<Vehicles>(MaxCapDesired);
-                Console.ReadLine();
-                Console.WriteLine("PRESS 0 TO EXIT TO MAIN MENU");
-                Console.WriteLine("PRESS 1 TO RECREATE YOUR GARAGE");
+                //Console.ReadLine();
+                Console.WriteLine("PRESS ENTER TO EXIT TO MAIN MENU");
+                Console.WriteLine("PRESS 0 TO RECREATE YOUR GARAGE");
                 string inputForSeitch = Console.ReadLine();
                 switch (inputForSeitch)
                 {
-                    case "1":
-                        break;
                     case "0":
-                        return;
-                    default:
                         break;
+                    default:
+                        return;
                 }
             }
         }
@@ -85,7 +89,9 @@ namespace Garage
                                   "USE - TO REMOVE\n" +
                                   "USE 0 TO EXIT TO MAIN MENU\n"
                                 /*  "USE 9 TO CLEAN THE WINDOW*/);
+                
                 string switchinput01 = Console.ReadLine();
+                Console.Clear();
                 switch (switchinput01)
                 {
                     case "+":// mother case
@@ -97,7 +103,7 @@ namespace Garage
                                       "TYPE 0 TO EXIT TO MAIN MENU\n"
                                       /*"TYPE 9 TO CLEAN THE WINDOW*/);
                         string input = Console.ReadLine();
-                        Console.WriteLine("YOU CHOOSE {0}\n ", input);
+                      //  Console.WriteLine("YOU CHOOSE {0}\n ", input);
 
                         if (MaxCapDesired <= 0)
                         {
@@ -107,6 +113,7 @@ namespace Garage
                         }
                         else
                         {
+#region SWITCH CASE FOR ADDING VEHICLES
                             //  Garage<Vehicles> newGarage = new Garage<Vehicles>(MaxCapDesired);
                             switch (input)
                             {
@@ -114,34 +121,46 @@ namespace Garage
                                 case "1": //child case of "+" case
                                     Console.WriteLine("YOU ARE WORKING WITH 1 CAR\n");
                                     Car newcar = new Car();
-                                    Console.WriteLine("What is the Reg. no. of your car?");
+                                    newcar.VehTYPE = "CAR";
+                                    Console.WriteLine("WHAT IS THE REG.NO OF THE VEHICLE?");
                                     var myCarname = Console.ReadLine();
                                     newcar.Name = myCarname;
-                                    Console.WriteLine("What is the Fuel type for your car?");
+                                    Console.WriteLine("WHAT IS THE TYPE OF FUEL USED?");
                                     var myCarFuel = Console.ReadLine();
                                     newcar.FuelType = myCarFuel;
-                                    Console.WriteLine("How many engines does your car has?");
-                                    var myCarEng = int.Parse(Console.ReadLine());
-                                    newcar.NoOfEngines = myCarEng;
-                                    Console.WriteLine("How many seats dows your Car has?");
+                                    Console.WriteLine("HOW MANY ENGINES DOES THIS VEHICLE HAS?");
+                                    string SmyCarEng = Console.ReadLine();
+                                    int iMycareng;
+                                    if (!int.TryParse(SmyCarEng, out iMycareng))
+                                    {
+                                        Console.WriteLine("NUMBER OF ENGINE SHOULD BE NUMERIC");
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        newcar.NoOfEngines = iMycareng;
+                                    }
+                                    Console.WriteLine("HOW MANY SEATS DOES THIS VEHICLE HAS?");
                                     var myCarseats = int.Parse(Console.ReadLine());
                                     newcar.NoOfSeats = myCarseats;
                                     allCapacity.addtoList(newcar);
+                                    //Console.WriteLine("YOU HAVE PARKED \n"+newcar.GarageInfo());
                                     break;
                                 //
                                 case "2"://child case of "+" case
                                     Console.WriteLine("YOU ARE WORKING WITH 2 BUS\n");
                                     Bus newBus = new Bus();
-                                    Console.WriteLine("What is the Reg. no. of your Bus?");
+                                    newBus.VehTYPE = "BUS";
+                                    Console.WriteLine("WHAT IS THE REG.NO OF THE VEHICLE?");
                                     var myBusname = Console.ReadLine();
                                     newBus.Name = myBusname;
-                                    Console.WriteLine("What is the Fuel type for your Bus?");
+                                    Console.WriteLine("WHAT IS THE TYPE OF FUEL USED?");
                                     var myBusFuel = Console.ReadLine();
                                     newBus.FuelType = myBusFuel;
-                                    Console.WriteLine("How many engines does your Bus has?");
+                                    Console.WriteLine("HOW MANY ENGINES DOES THIS VEHICLE HAS?");
                                     var myBusEng = int.Parse(Console.ReadLine());
                                     newBus.NoOfEngines = myBusEng;
-                                    Console.WriteLine("How many seats dows your Bus has?");
+                                    Console.WriteLine("HOW MANY SEATS DOES THIS VEHICLE HAS?");
                                     var myBusseats = int.Parse(Console.ReadLine());
                                     newBus.NoOfSeats = myBusseats;
                                     allCapacity.addtoList(newBus);
@@ -150,16 +169,17 @@ namespace Garage
                                 case "3"://child case of "+" case
                                     Console.WriteLine("YOU ARE WORKING WITH 3 MOTORCYCLE\n");
                                     Motorcycle newMotorcycle = new Motorcycle();
-                                    Console.WriteLine("What is the Reg. no. of your Motorcycle?");
+                                    newMotorcycle.VehTYPE = "MOTORCYCLE";
+                                    Console.WriteLine("WHAT IS THE REG.NO OF THE VEHICLE?");
                                     var myMotorcyclename = Console.ReadLine();
                                     newMotorcycle.Name = myMotorcyclename;
-                                    Console.WriteLine("What is the Fuel type for your Motorcycle?");
+                                    Console.WriteLine("WHAT IS THE TYPE OF FUEL USED?");
                                     var myMotorcycleFuel = Console.ReadLine();
                                     newMotorcycle.FuelType = myMotorcycleFuel;
-                                    Console.WriteLine("How many engines does your Motorcycle has?");
+                                    Console.WriteLine("HOW MANY ENGINES DOES THIS VEHICLE HAS?");
                                     var myMotorcycleEng = int.Parse(Console.ReadLine());
                                     newMotorcycle.NoOfEngines = myMotorcycleEng;
-                                    Console.WriteLine("How many seats dows your Motorcycle has?");
+                                    Console.WriteLine("HOW MANY SEATS DOES THIS VEHICLE HAS?");
                                     var myMotorcycleseats = int.Parse(Console.ReadLine());
                                     newMotorcycle.NoOfSeats = myMotorcycleseats;
                                     allCapacity.addtoList(newMotorcycle);
@@ -168,16 +188,17 @@ namespace Garage
                                 case "4"://child case of "+" case
                                     Console.WriteLine("YOU ARE WORKING WITH 4 BOAT\n");
                                     Boat newBoat = new Boat();
-                                    Console.WriteLine("What is the Reg. no. of your Boat?");
+                                    newBoat.VehTYPE = "BOAT";
+                                    Console.WriteLine("WHAT IS THE REG.NO OF THE VEHICLE?");
                                     var myBoatname = Console.ReadLine();
                                     newBoat.Name = myBoatname;
-                                    Console.WriteLine("What is the Fuel type for your Boat?");
+                                    Console.WriteLine("WHAT IS THE TYPE OF FUEL USED?");
                                     var myBoatFuel = Console.ReadLine();
                                     newBoat.FuelType = myBoatFuel;
-                                    Console.WriteLine("How many engines does your Boat has?");
+                                    Console.WriteLine("HOW MANY ENGINES DOES THIS VEHICLE HAS? ");
                                     var myBoatEng = int.Parse(Console.ReadLine());
                                     newBoat.NoOfEngines = myBoatEng;
-                                    Console.WriteLine("How many seats dows your Boat has?");
+                                    Console.WriteLine("HOW MANY SEATS DOES THIS VEHICLE HAS?");
                                     var myBoatseats = int.Parse(Console.ReadLine());
                                     newBoat.NoOfSeats = myBoatseats;
                                     allCapacity.addtoList(newBoat);
@@ -186,16 +207,17 @@ namespace Garage
                                 case "5"://child case of "+" case
                                     Console.Write("YOU ARE WORKING WITH 5 AIRPLANE\n");
                                     Airplane newAirplane = new Airplane();
-                                    Console.Write("What is the Reg. no. of your Airplane?");
+                                    newAirplane.VehTYPE = "AIRPLANE";
+                                    Console.Write("WHAT IS THE REG.NO OF THE VEHICLE?");
                                     var myAirplanename = Console.ReadLine();
                                     newAirplane.Name = myAirplanename;
-                                    Console.Write("What is the Fuel type for your Airplane?");
+                                    Console.Write("WHAT IS THE TYPE OF FUEL USED?");
                                     var myAirplaneFuel = Console.ReadLine();
                                     newAirplane.FuelType = myAirplaneFuel;
-                                    Console.Write("How many engines does your Airplane has?");
+                                    Console.Write("HOW MANY ENGINES DOES THIS VEHICLE HAS?");
                                     var myAirplaneEng = int.Parse(Console.ReadLine());
                                     newAirplane.NoOfEngines = myAirplaneEng;
-                                    Console.Write("How many seats dows your Airplane has?");
+                                    Console.Write("HOW MANY SEATS DOES THIS VEHICLE HAS?");
                                     var myAirplaneseats = int.Parse(Console.ReadLine());
                                     newAirplane.NoOfSeats = myAirplaneseats;
                                     allCapacity.addtoList(newAirplane);
@@ -217,7 +239,9 @@ namespace Garage
                             }
                         }
                         break;// this is for +
+#endregion SWITCH CASE FOR ADDING VEHICLES END HERE
 
+#region SWITCH CASE FOR REMOVING VEHICLES
                     case "-":
                         Console.WriteLine("TYPE 1 TO REMOVE CAR\n" +
                                       "TYPE 2 TO REMOVE BUS\n" +
@@ -230,32 +254,77 @@ namespace Garage
                         switch(input1)
                         {
                             case "1":
-                                Console.WriteLine("!!GIVE THE REG.NO. OF THE CAR YOU WANT TO UNPARK!!!\n");
+                                Console.WriteLine("GIVE THE REG.NO. OF THE CAR YOU WANT TO UNPARK!!!\n");
                                 Car rnewCar = new Car();
-                                Console.Write("What is the Reg. no. of your Car?");
+                                Console.Write("WHAT IS THE RREG. NO OF YOUR CAR ?");
                                 var rmyCarname = Console.ReadLine();
-                                if (rnewCar.Name == rmyCarname)
-                                {
-                                    allCapacity.RemoveVeh((rnewCar));
-                                }
-                                else
-                                {
-                                    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo CAR with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
+                                rnewCar.Name = rmyCarname;
+                                //if (rnewCar.Name == rmyCarname)
+                                //{
+                                    allCapacity.RemoveVeh(rnewCar);
+                                //}
+                                //else
+                                //{
+                                //    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo CAR with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
 
-                                }
+                                //}
                                 break;
                             case "2":
                                 Bus rnewBus = new Bus();
-                                Console.Write("What is the Reg. no. of your Bus?");
+                                Console.Write("WHAT IS THE REG. NO. OF YOUR BUS ?");
                                 var rmyBusname = Console.ReadLine();
-                                if(rnewBus.Name == rmyBusname)
-                                {
+                                rnewBus.Name = rmyBusname;
+                                //if(rnewBus.Name == rmyBusname)
+                                //{
                                     allCapacity.RemoveVeh(rnewBus);
-                                }
-                                else
-                                {
-                                    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo BUS with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
-                                }
+                                //}
+                                //else
+                                //{
+                                //    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo BUS with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
+                                //}
+                                break;
+                            case "3":
+                                Motorcycle rnewMC = new Motorcycle();
+                                Console.Write("WHAT IS THE REG. NO OF YOUR MOTORCYCLE ?");
+                                var rnewMC1 = Console.ReadLine();
+                                rnewMC.Name = rnewMC1;
+
+                                //if (rnewMC.Name == rnewMC1)
+                                //{
+                                allCapacity.RemoveVeh(rnewMC);
+                                //}
+                                //else
+                                //{
+                                //    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo MOTORCYCLE with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
+                                //}
+                                break;
+                            case "4":
+                                Boat rnewBoat = new Boat();
+                                Console.Write("WHAT IS THE REG. NO. OF YOUR BOAT ?");
+                                var rnewBoat1 = Console.ReadLine();
+                                rnewBoat.Name = rnewBoat1;
+                                //if (rnewMC.Name == rnewMC1)
+                                //{
+                                allCapacity.RemoveVeh(rnewBoat);
+                                //}
+                                //else
+                                //{
+                                //    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo MOTORCYCLE with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
+                                //}
+                                break;
+                            case "5":
+                                Airplane rnewAP= new Airplane();
+                                Console.Write("WHAT IS THE REG. NO. OF YOUR AIRPLANE ?");
+                                var rnewAP1 = Console.ReadLine();
+                                rnewAP.Name = rnewAP1;
+                                //if (rnewMC.Name == rnewMC1)
+                                //{
+                                allCapacity.RemoveVeh(rnewAP);
+                                //}
+                                //else
+                                //{
+                                //    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo MOTORCYCLE with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
+                                //}
                                 break;
                         }
                         break;
@@ -266,19 +335,26 @@ namespace Garage
                 }
             }
         }
-
+#endregion SWITCH CASE FOR REMOVING VEHICLES END HERE
         public void ShowAllVehicles()
         {
             if(allCapacity==null)
             {
-                Console.WriteLine("SORRY !! NO VEHICLES TO DISPLAY");
+                Console.Clear();
+                Console.WriteLine("SORRY !! NO VEHICLES TO DISPLAY, NO GARAGE NO VEHICLE :(");
                 Console.ReadLine();
             }
             else {
-               
-                allCapacity.AllVehicles();
-                         
+                foreach (var Veh in allCapacity)
+                {
+                    //Console.Clear();
+                    Console.WriteLine(Veh.GarageInfo());
+                    
+                }
+                //allCapacity.AllVehicles();
+                Console.ReadLine();
             }
+           
 
 
         }

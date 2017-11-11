@@ -14,6 +14,9 @@ namespace Garage
         private int maxcapacity;
         private int count;
 
+        Vehicles TestVeh = new Vehicles();
+        Car NEWCar = new Car();
+
         public int MaxCapacity { get { return maxcapacity; } }
         public int Count { get { return count; } set { count = value; } }
 
@@ -21,76 +24,78 @@ namespace Garage
         {
             maxvehicle = new List<T>();
             maxcapacity = maxCapSetted;
-            Console.WriteLine("Your Garage size is :" + maxcapacity + " Vehicles");
-
+            Console.WriteLine("\n-------------------------------------------------------\n " +
+                                "  GARAGE CREATED WITH A CAPACITY OF :" + maxcapacity + " VEHICLES" +
+                               "\n-------------------------------------------------------");
+            Console.ReadLine();
         }
 
         public Garage()
         {
         }
 
-        public  void addtoList (T  input)
+        public void addtoList(T input)
         {
             if (maxcapacity - maxvehicle.Count <= 0)
             {
-                Console.WriteLine("++++++++++++++++++++++\n  SORRY  GARAGE  FULL\n++++++++++++++++++++++");
+                Console.WriteLine("-------------------------\n  SORRY  GARAGE  FULL\n------------------------");
                 return;
             }
             if (count < maxcapacity)
-            { 
-                maxvehicle.Add( input);
-                foreach (var i in maxvehicle)
-                {
-                    Console.WriteLine("Your have parked a  :" + i.Name + "");
-                 }
-                
+            {
+                maxvehicle.Add(input);
+                count++;
+
             }
-            Console.WriteLine("Your Garage can have :" + (maxcapacity - maxvehicle.Count) + " more Vehicles");
+            Console.WriteLine("--------------------------------------\nYOUR GARAGE CAN HAVE :" + (maxcapacity - maxvehicle.Count) +
+                " MORE VEHICLES\n-------------------------------------");
             Console.ReadLine();
         }
         public void RemoveVeh(T input)
         {
             if (maxvehicle.Count == 0)
             {
-                Console.WriteLine("No vehicles in the garage to remove");
+                Console.WriteLine("NO MORE VEHICLES TO REMOVE");
                 return;
             }
-            if (count < maxcapacity)
-            {
-                maxvehicle.Remove(input);
-                foreach (var i in maxvehicle.Where(x => x.Name.StartsWith(x.Name)))
-                {
-                    Console.WriteLine("Your have unparked a vehicle  :" + i.Name + "");
-                }
 
+            if (count <= maxcapacity)
+            {
+                string Regnotodel = input.Name;
+                maxvehicle.RemoveAll(x => x.Name.StartsWith(Regnotodel));
+                Console.WriteLine("Your have unparked a vehicle  :" + Regnotodel + "");
+                count--;
             }
-            Console.WriteLine("Your Garage can have :" + (maxcapacity) + " more Vehicles");
+            Console.WriteLine("Your Garage can have :" + (maxcapacity - count) + " more Vehicles");
             Console.ReadLine();
         }
-   
+
 
         public void AllVehicles()
         {
-             if (maxvehicle.Count == 0)
+            //Car CarName = new Car();
+            //Bus Busname = new Bus();
+            if (maxvehicle.Count == 0)
             {
-                Console.WriteLine("no vehicles in the garage");
+                Console.WriteLine("NO VEHICLES IN THE GARAGE");
             }
-            else { 
-            foreach (var veh in maxvehicle)
-                    
-                        Console.WriteLine("vehicle Reg No:"+ veh.Name.ToString());
-                Console.WriteLine("The number of vehicles in Garage is :" + maxvehicle.Count.ToString());
+            else
+            {
+                foreach (var veh in maxvehicle)
 
-
+                    Console.WriteLine(TestVeh.GarageInfo());
+                //Console.WriteLine("vehicle Reg No:"+ veh.Name.ToString());
+                Console.WriteLine("THE NUMBER OF VEHICLES IN THE GARAGE IS :" + maxvehicle.Count.ToString());
 
             }
+            //Console.WriteLine("NO OF CARS IN THE GARAGE :" + CarName.Name.Count());//think about how to get a value of vehicle type from the garage class
             Console.ReadLine();
         }
-       IEnumerator IEnumerable.GetEnumerator() { throw new NotImplementedException(); }
-       public IEnumerator<T> GetEnumerator() { for (int i = 0; i < count; i++) { yield return maxvehicle[i]; } }
+        IEnumerator IEnumerable.GetEnumerator() { throw new NotImplementedException(); }
+        public IEnumerator<T> GetEnumerator() { for (int i = 0; i < count; i++) { yield return maxvehicle[i]; } }
     }
 
 }
-    
+
 
 
