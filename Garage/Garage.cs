@@ -77,8 +77,12 @@ namespace Garage
             }
             else { 
             foreach (var veh in maxvehicle)
-                        Console.WriteLine(veh);
-                             
+                    
+                        Console.WriteLine("vehicle Reg No:"+ veh.Name.ToString());
+                Console.WriteLine("The number of vehicles in Garage is :" + maxvehicle.Count.ToString());
+
+
+
             }
             Console.ReadLine();
         }

@@ -31,7 +31,7 @@ namespace Garage
                     {
                         case 1: CreateGarage(); break;
                         case 2: ParkOrUnpark(); break;
-                        case 3: Allvehicles(); break;
+                        case 3: ShowAllVehicles(); break;
                         case 0: return;
                         default: Console.WriteLine("*****PLEASE ENTER A VALUE FROM THE ABLOVE LIST *****"); Console.ReadLine(); break;
                     }
@@ -217,9 +217,70 @@ namespace Garage
                             }
                         }
                         break;// this is for +
-              
+
+                    case "-":
+                        Console.WriteLine("TYPE 1 TO REMOVE CAR\n" +
+                                      "TYPE 2 TO REMOVE BUS\n" +
+                                      "TYPE 3 TO REMOVE MOTORCYCLE\n" +
+                                      "TYPE 4 TO REMOVE BOAT\n" +
+                                      "TYPE 5 TO REMOVE AIRPLANE\n" +
+                                      "TYPE 0 TO EXIT TO MAIN MENU\n"
+                                      /*"TYPE 9 TO CLEAN THE WINDOW*/);
+                        string input1 = Console.ReadLine();
+                        switch(input1)
+                        {
+                            case "1":
+                                Console.WriteLine("!!GIVE THE REG.NO. OF THE CAR YOU WANT TO UNPARK!!!\n");
+                                Car rnewCar = new Car();
+                                Console.Write("What is the Reg. no. of your Car?");
+                                var rmyCarname = Console.ReadLine();
+                                if (rnewCar.Name == rmyCarname)
+                                {
+                                    allCapacity.RemoveVeh((rnewCar));
+                                }
+                                else
+                                {
+                                    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo CAR with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
+
+                                }
+                                break;
+                            case "2":
+                                Bus rnewBus = new Bus();
+                                Console.Write("What is the Reg. no. of your Bus?");
+                                var rmyBusname = Console.ReadLine();
+                                if(rnewBus.Name == rmyBusname)
+                                {
+                                    allCapacity.RemoveVeh(rnewBus);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo BUS with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
+                                }
+                                break;
+                        }
+                        break;
+                    case "0":
+                        return;
+
+
                 }
             }
+        }
+
+        public void ShowAllVehicles()
+        {
+            if(allCapacity==null)
+            {
+                Console.WriteLine("SORRY !! NO VEHICLES TO DISPLAY");
+                Console.ReadLine();
+            }
+            else {
+               
+                allCapacity.AllVehicles();
+                         
+            }
+
+
         }
     }
 }
@@ -227,15 +288,5 @@ namespace Garage
 
 
 
-#endregion
-#region Display all vehicles
-public void Allvehicles()
-{
-    Console.WriteLine();
-    Garage<Vehicles> showall = new Garage<Vehicles>();
-    Console.ReadLine();
-}
-        #endregion
-    }
-}
 
+#endregion
