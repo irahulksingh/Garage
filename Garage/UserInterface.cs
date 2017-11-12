@@ -21,8 +21,8 @@ namespace Garage
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("---------------------------------------------------\n" +
-                    "---------------------------------------------------\n" +
+                Console.WriteLine("--------------------------------------------------\n" +
+                    "--------------------------------------------------\n" +
                     "             MY GARAGE APPLICATION\n" +
                     "--------------------------------------------------\n" +
                     "--------------------------------------------------");
@@ -31,6 +31,8 @@ namespace Garage
                 Console.WriteLine("2. PARK OR UNPARK VEHICLES.");
                 Console.WriteLine("3. SHOW ALL VEHICLES");
                 Console.WriteLine("4. COUNT OF VEHICLES");
+                Console.WriteLine("5. DELETE THE GARAGE");
+
                 Console.WriteLine("0. EXIT.");
                 string sControl = Console.ReadLine();
                 int iControl;
@@ -42,8 +44,13 @@ namespace Garage
                         case 2: ParkOrUnpark(); break;
                         case 3: ShowAllVehicles(); break;
                         case 4: Vehcount(); break;
+                        case 5: ClearList();break;
                         case 0: return;
-                        default: Console.WriteLine("*****PLEASE ENTER A VALUE FROM THE ABLOVE LIST *****"); Console.ReadLine(); break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("-----PLEASE ENTER A VALUE FROM THE ABLOVE LIST ------");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.ReadLine(); break;
                     }
                 }
             }
@@ -85,12 +92,14 @@ namespace Garage
                     }
                 }
                 allCapacity = new Garage<Vehicles>(MaxCapDesired);
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("PRESS ENTER TO EXIT TO MAIN MENU");
-                Console.WriteLine("PRESS 0 TO RECREATE YOUR GARAGE");
+                Console.WriteLine("PRESS R TO RECREATE YOUR GARAGE");
+                Console.ForegroundColor = ConsoleColor.White;
                 string inputForSwitch = Console.ReadLine();
                 switch (inputForSwitch)
                 {
-                    case "0":
+                    case "R":
                         break;
                     default:
                         return;
@@ -134,7 +143,7 @@ namespace Garage
                             Console.WriteLine("------------------------------------------------" +
                                 "\nNO GARAGE  EXISTs. PLEASE CREATE A GARAGE FIRST \n" +
                                 "------------------------------------------------");
-                                              Console.ForegroundColor = ConsoleColor.White;
+                            Console.ForegroundColor = ConsoleColor.White;
                         }
                         else
                         {
@@ -150,7 +159,7 @@ namespace Garage
                                     CarRegNo:
                                     Console.WriteLine("WHAT IS THE REG.NO OF THE VEHICLE?");
                                     var myCarname = Console.ReadLine();
-                                    if (String.IsNullOrEmpty(myCarname ))
+                                    if (String.IsNullOrEmpty(myCarname))
                                     {
                                         Console.ForegroundColor = ConsoleColor.Red;
                                         Console.WriteLine("REG. NO. CANNOT BE EMPTY, PLEASE ENTER A REG. NO.");
@@ -159,8 +168,8 @@ namespace Garage
                                         goto CarRegNo;
                                     }
                                     else
-                                    { 
-                                    newcar.Name = myCarname;
+                                    {
+                                        newcar.Name = myCarname;
                                     }
                                     Console.WriteLine("WHAT IS THE TYPE OF FUEL USED?");
                                     var myCarFuel = Console.ReadLine();
@@ -186,7 +195,7 @@ namespace Garage
                                     Console.WriteLine("HOW MANY SEATS DOES THIS VEHICLE HAS?");
                                     string myCarseats = Console.ReadLine();
                                     int imyCarSeats;
-                                    if(!int.TryParse(myCarseats,out imyCarSeats))
+                                    if (!int.TryParse(myCarseats, out imyCarSeats))
                                     {
                                         Console.ForegroundColor = ConsoleColor.Red;
                                         Console.WriteLine("NO. OF SEATS MUST BE NUMERIC, PLEASE REENTER THE DETAILS.");
@@ -199,8 +208,8 @@ namespace Garage
                                         newcar.NoOfSeats = imyCarSeats;
                                         allCapacity.AddtoList(newcar);
                                     }
-                                   
-                                     break;
+
+                                    break;
                                 //
                                 case "2"://child case of "+" case
                                     Console.WriteLine("YOU HAVE CHOOSEN BUS\n");
@@ -208,7 +217,7 @@ namespace Garage
                                     newBus.VehTYPE = "BUS";
                                     BusRegno:
                                     Console.WriteLine("WHAT IS THE REG.NO OF THE VEHICLE?");
-                                   string myBusname = Console.ReadLine();
+                                    string myBusname = Console.ReadLine();
                                     if (String.IsNullOrEmpty(myBusname))
                                     {
                                         Console.ForegroundColor = ConsoleColor.Red;
@@ -245,7 +254,7 @@ namespace Garage
 
                                     myBUSSEATNO:
                                     Console.WriteLine("HOW MANY SEATS DOES THIS VEHICLE HAS?");
-                                    string myBusseats =Console.ReadLine();
+                                    string myBusseats = Console.ReadLine();
                                     int imybusseats;
                                     if (!int.TryParse(myBusseats, out imybusseats))
                                     {
@@ -267,57 +276,174 @@ namespace Garage
                                     Console.WriteLine("YOU ARE WORKING WITH 3 MOTORCYCLE\n");
                                     Motorcycle newMotorcycle = new Motorcycle();
                                     newMotorcycle.VehTYPE = "MOTORCYCLE";
+                                    mcregno:
                                     Console.WriteLine("WHAT IS THE REG.NO OF THE VEHICLE?");
                                     var myMotorcyclename = Console.ReadLine();
+                                    if (String.IsNullOrEmpty(myMotorcyclename))
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("REG. NO. CANNOT BE EMPTY, PLEASE ENTER A REG. NO.");
+                                        Console.ReadLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        goto mcregno;
+
+                                    }
                                     newMotorcycle.Name = myMotorcyclename;
                                     Console.WriteLine("WHAT IS THE TYPE OF FUEL USED?");
                                     var myMotorcycleFuel = Console.ReadLine();
                                     newMotorcycle.FuelType = myMotorcycleFuel;
+
+                                    myMCengno:
                                     Console.WriteLine("HOW MANY ENGINES DOES THIS VEHICLE HAS?");
-                                    var myMotorcycleEng = int.Parse(Console.ReadLine());
-                                    newMotorcycle.NoOfEngines = myMotorcycleEng;
+                                    string myMotorcycleEng = Console.ReadLine();
+                                    int iMymotorcycleeng;
+                                    if (!int.TryParse(myMotorcycleEng, out iMymotorcycleeng))
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("NO. OF ENGINE MUST BE NUMERIC, PLEASE REENTER THE DETAILS");
+                                        Console.ReadLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        goto myMCengno;
+                                    }
+                                    else
+                                    {
+                                        newMotorcycle.NoOfEngines = iMymotorcycleeng;
+                                    }
+
+                                    myMCSeatno:
                                     Console.WriteLine("HOW MANY SEATS DOES THIS VEHICLE HAS?");
-                                    var myMotorcycleseats = int.Parse(Console.ReadLine());
-                                    newMotorcycle.NoOfSeats = myMotorcycleseats;
-                                    allCapacity.AddtoList(newMotorcycle);
+                                    string myMotorcycleseats = Console.ReadLine();
+                                    int imyMotorcycleseats;
+                                    if (!int.TryParse(myMotorcycleseats, out imyMotorcycleseats))
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("NO. OF SEATS MUST BE NUMERIC, PLEASE REENTER THE DETAILS");
+                                        Console.ReadLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        goto myMCSeatno;
+
+                                    }
+                                    else
+                                    {
+                                        newMotorcycle.NoOfSeats = imyMotorcycleseats;
+                                        allCapacity.AddtoList(newMotorcycle);
+                                    }
                                     break;
                                 //
                                 case "4"://child case of "+" case
                                     Console.WriteLine("YOU ARE WORKING WITH 4 BOAT\n");
                                     Boat newBoat = new Boat();
                                     newBoat.VehTYPE = "BOAT";
+                                    newBoatReg:
                                     Console.WriteLine("WHAT IS THE REG.NO OF THE VEHICLE?");
                                     var myBoatname = Console.ReadLine();
+                                    if (String.IsNullOrEmpty(myBoatname))
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("REG. NO. CANNOT BE EMPTY, PLEASE ENTER A REG. NO.");
+                                        Console.ReadLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        goto newBoatReg;
+                                    }
                                     newBoat.Name = myBoatname;
                                     Console.WriteLine("WHAT IS THE TYPE OF FUEL USED?");
                                     var myBoatFuel = Console.ReadLine();
                                     newBoat.FuelType = myBoatFuel;
+
+                                    mynewBoat:
                                     Console.WriteLine("HOW MANY ENGINES DOES THIS VEHICLE HAS? ");
-                                    var myBoatEng = int.Parse(Console.ReadLine());
-                                    newBoat.NoOfEngines = myBoatEng;
+                                    string myBoatEng = Console.ReadLine();
+                                    int iMynewboat;
+                                    if (!int.TryParse(myBoatEng, out iMynewboat))
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("NO. OF ENGINE MUST BE NUMERIC, PLEASE REENTER THE DETAILS");
+                                        Console.ReadLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        goto mynewBoat;
+                                    }
+                                    else
+                                    {
+                                        newBoat.NoOfEngines = iMynewboat;
+                                    }
+                                    mynewboatseats:
                                     Console.WriteLine("HOW MANY SEATS DOES THIS VEHICLE HAS?");
-                                    var myBoatseats = int.Parse(Console.ReadLine());
-                                    newBoat.NoOfSeats = myBoatseats;
-                                    allCapacity.AddtoList(newBoat);
+                                    string myBoatseats = Console.ReadLine();
+                                    int imyBoatseats;
+                                    if (!int.TryParse(myBoatseats, out imyBoatseats))
+
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("NO. OF SEATS MUST BE NUMERIC, PLEASE REENTER THE DETAILS");
+                                        Console.ReadLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        goto mynewboatseats;
+
+
+                                    }
+                                    else
+                                    {
+                                        newBoat.NoOfSeats = imyBoatseats;
+                                        allCapacity.AddtoList(newBoat);
+                                    }
                                     break;
 
                                 case "5"://child case of "+" case
                                     Console.Write("YOU ARE WORKING WITH 5 AIRPLANE\n");
                                     Airplane newAirplane = new Airplane();
                                     newAirplane.VehTYPE = "AIRPLANE";
+                                    newAPregno:
                                     Console.Write("WHAT IS THE REG.NO OF THE VEHICLE?");
                                     var myAirplanename = Console.ReadLine();
+                                    if (string.IsNullOrEmpty(myAirplanename))
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("REG. NO. CANNOT BE EMPTY, PLEASE ENTER A REG. NO.");
+                                        Console.ReadLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        goto newAPregno;
+                                    }
                                     newAirplane.Name = myAirplanename;
                                     Console.Write("WHAT IS THE TYPE OF FUEL USED?");
                                     var myAirplaneFuel = Console.ReadLine();
                                     newAirplane.FuelType = myAirplaneFuel;
+
+                                    APengno:
                                     Console.Write("HOW MANY ENGINES DOES THIS VEHICLE HAS?");
-                                    var myAirplaneEng = int.Parse(Console.ReadLine());
-                                    newAirplane.NoOfEngines = myAirplaneEng;
+                                    string myAirplaneEng = Console.ReadLine();
+                                    int iMyAPeng;
+                                    if (!int.TryParse(myAirplaneEng, out iMyAPeng))
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("NO. OF ENGINE MUST BE NUMERIC, PLEASE REENTER THE DETAILS");
+                                        Console.ReadLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        goto APengno;
+
+                                    }
+                                    else
+                                    {
+                                        newAirplane.NoOfEngines = iMyAPeng;
+                                    }
+
+                                    myApSeats:
                                     Console.Write("HOW MANY SEATS DOES THIS VEHICLE HAS?");
-                                    var myAirplaneseats = int.Parse(Console.ReadLine());
-                                    newAirplane.NoOfSeats = myAirplaneseats;
-                                    allCapacity.AddtoList(newAirplane);
+                                    string myAirplaneseats = Console.ReadLine();
+                                    int imyapseats;
+                                    if (!int.TryParse(myAirplaneseats, out imyapseats))
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("NO. OF SEATS MUST BE NUMERIC, PLEASE REENTER THE DETAILS");
+                                        Console.ReadLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        goto myApSeats;
+
+                                    }
+                                    else
+                                    {
+                                        newAirplane.NoOfSeats = imyapseats;
+                                        allCapacity.AddtoList(newAirplane);
+                                    }
                                     break;
                                 //
                                 case "0"://child case of "+" case
@@ -359,7 +485,7 @@ namespace Garage
                                 {
                                     allCapacity.RemoveVeh(rnewCar);
                                 }
-                                else
+                                else 
                                 {
                                     Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo CAR with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
 
@@ -370,14 +496,14 @@ namespace Garage
                                 Console.Write("WHAT IS THE REG. NO. OF YOUR BUS ?");
                                 var rmyBusname = Console.ReadLine();
                                 rnewBus.Name = rmyBusname;
-                                //if(rnewBus.Name == rmyBusname)
-                                //{
-                                allCapacity.RemoveVeh(rnewBus);
-                                //}
-                                //else
-                                //{
-                                //    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo BUS with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
-                                //}
+                                if (rnewBus.Name == rmyBusname)
+                                {
+                                    allCapacity.RemoveVeh(rnewBus);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo BUS with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
+                                }
                                 break;
                             case "3":
                                 Motorcycle rnewMC = new Motorcycle();
@@ -385,42 +511,42 @@ namespace Garage
                                 var rnewMC1 = Console.ReadLine();
                                 rnewMC.Name = rnewMC1;
 
-                                //if (rnewMC.Name == rnewMC1)
-                                //{
-                                allCapacity.RemoveVeh(rnewMC);
-                                //}
-                                //else
-                                //{
-                                //    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo MOTORCYCLE with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
-                                //}
+                                if (rnewMC.Name == rnewMC1)
+                                {
+                                    allCapacity.RemoveVeh(rnewMC);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo MOTORCYCLE with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
+                                }
                                 break;
                             case "4":
                                 Boat rnewBoat = new Boat();
                                 Console.Write("WHAT IS THE REG. NO. OF YOUR BOAT ?");
                                 var rnewBoat1 = Console.ReadLine();
                                 rnewBoat.Name = rnewBoat1;
-                                //if (rnewMC.Name == rnewMC1)
-                                //{
-                                allCapacity.RemoveVeh(rnewBoat);
-                                //}
-                                //else
-                                //{
-                                //    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo MOTORCYCLE with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
-                                //}
+                                if (rnewBoat.Name == rnewBoat1)
+                                {
+                                    allCapacity.RemoveVeh(rnewBoat);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo MOTORCYCLE with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
+                                }
                                 break;
                             case "5":
                                 Airplane rnewAP = new Airplane();
                                 Console.Write("WHAT IS THE REG. NO. OF YOUR AIRPLANE ?");
                                 var rnewAP1 = Console.ReadLine();
                                 rnewAP.Name = rnewAP1;
-                                //if (rnewMC.Name == rnewMC1)
-                                //{
-                                allCapacity.RemoveVeh(rnewAP);
-                                //}
-                                //else
-                                //{
-                                //    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo MOTORCYCLE with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
-                                //}
+                                if (rnewAP.Name == rnewAP1)
+                                {
+                                    allCapacity.RemoveVeh(rnewAP);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++\nNo MOTORCYCLE with this REG. No in the garage\n++++++++++++++++++++++++++++++++++++++++");
+                                }
                                 break;
                         }
                         break;
@@ -454,7 +580,26 @@ namespace Garage
             }
         }
         #endregion
+
+        public void ClearList()
+        {
+            if (allCapacity == null)
+            {
+                Console.WriteLine("NO GARAGE EXISTS TO DELETE !!");
+                Console.ReadLine();
+            }
+            else
+            {
+                allCapacity.Clearall();
+                Console.WriteLine("GARAGE DELETED");
+                Console.ReadLine();
+            }
+        }
+
         #region DIPLAY COUNT OF VEHICLES BY CALLING METHOD FROM GARAGE CLASS
+
+
+
         public void Vehcount()
         {
             if (allCapacity != null)
@@ -470,8 +615,12 @@ namespace Garage
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
+
         #endregion
+
+        
     }
+
 }
 
 

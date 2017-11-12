@@ -45,6 +45,24 @@ namespace Garage
             
         }
 
+        public virtual string FindDescription()
+
+        {
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            return
+                "\n-------------------------------------------------------" +
+                "\n-------------------------------------------------------\n" +
+                "THIS VEHICLE IS A : " + VehTYPE +
+                "\nTHE REG.NO OF THE CAR YOU HAVE PARKED IS :" + Name +
+               "\nTHE NO. OF ENGINES IN THIS VEHICLE  :" + NoOfEngines +
+                "\nTHIS VEHICLE RUNS ON :" + FuelType + "\nTHIS VEHICLE HAS  ::" + NoOfSeats + " :: SEAT" +
+                "\n-------------------------------------------------------" +
+                "\n-------------------------------------------------------"
+                ;
+
+        }
+
 
     }
 }

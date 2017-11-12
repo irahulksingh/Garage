@@ -40,7 +40,9 @@ namespace Garage
         {
             if (maxcapacity - maxvehicle.Count <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("-------------------------\n  SORRY  GARAGE  FULL\n------------------------");
+                Console.ForegroundColor = ConsoleColor.White;
                 return;
             }
             if (count < maxcapacity)
@@ -66,13 +68,28 @@ namespace Garage
             }
 
             if (count <= maxcapacity)
+
             {
+
+                
                 string Regnotodel = input.Name;
+
+                  
+
+                //if(maxvehicle.First(x => x = Regnotodel.ToString))
                 maxvehicle.RemoveAll(x => x.Name.StartsWith(Regnotodel));
-                Console.WriteLine("YOU HAVE UNPARKED A VEHICLE  :" + Regnotodel + "");
+                Console.ForegroundColor = ConsoleColor.Green;
+
+                Console.WriteLine("-----------------------------------\n" +
+                    "YOU HAVE UNPARKED A VEHICLE  :" + Regnotodel +
+                    "\n-----------------------------------");
                 count--;
             }
-            Console.WriteLine("YOUR GARAGE CAN HAVE :" + (maxcapacity - count) + " MORE VEHICLES");
+            Console.WriteLine("-----------------------------------\n" +
+                "YOUR GARAGE CAN HAVE :" + (maxcapacity - count) + " VEHICLES"+
+
+                "\n-----------------------------------");
+            Console.ForegroundColor = ConsoleColor.White;
             Console.ReadLine();
         }
 
@@ -118,9 +135,9 @@ namespace Garage
 
             
 
-            Console.WriteLine("--------------------------------------------\n" +
-                "THE TOTAL NO. OF CARS IN YOUR GARAGE IS :" + maxvehicle.Count.ToString() +
-                "\n--------------------------------------------");
+            Console.WriteLine("-----------------------------------------------\n" +
+                "THE TOTAL NO. OF VEHICLES IN YOUR GARAGE IS :" + maxvehicle.Count.ToString() +
+                "\n-----------------------------------------------");
             Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White;
 
@@ -130,6 +147,12 @@ namespace Garage
         IEnumerator IEnumerable.GetEnumerator() { throw new NotImplementedException(); }
         public IEnumerator<T> GetEnumerator() { for (int i = 0; i < count; i++) { yield return maxvehicle[i]; } }
         #endregion
+        #region CLEAR THE LIST FULLY DELETING THE LIST
+        public void Clearall()
+        {
+            maxvehicle.Clear();
+        }
+#endregion
     }
 
 }
