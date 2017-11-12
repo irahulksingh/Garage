@@ -28,15 +28,21 @@ namespace Garage
         public int NoOfSeats { get { return noofseats; } set { noofseats = value; } }
        
         public virtual string GarageInfo()
-        {
-            return 
-                "THIS VEHICLE IS A : "+ VehTYPE+
+
+      {
+            
+            Console.ForegroundColor = ConsoleColor.Green;
+            return
+                "\n-------------------------------------------------------" +
+                "\n-------------------------------------------------------\n"+
+                "THIS VEHICLE IS A : " + VehTYPE+
                 "\nTHE REG.NO OF THE CAR YOU HAVE PARKED IS :" + Name +
                "\nTHE NO. OF ENGINES IN THIS VEHICLE  :" + NoOfEngines +
                 "\nTHIS VEHICLE RUNS ON :" + FuelType + "\nTHIS VEHICLE HAS  ::" + NoOfSeats + " :: SEAT" +
                 "\n-------------------------------------------------------"+
                 "\n-------------------------------------------------------"
                 ;
+            
         }
 
 

@@ -9,16 +9,24 @@ namespace Garage
 {
     public class UserInterface : Vehicles
     {
+        #region DECLARATION OF VARIABLE AND INSTANCE WHICH  CAN BE USED THROUGHOUT THIS CLASS
         public int MaxCapDesired;
         private Garage<Vehicles> allCapacity;
-        #region Main Menu 
+        #endregion
+        #region MAIN MENU OPTIONS DISPLAY
         public void mainmenu()
         {
 
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("*************************************************\n             MY GARAGE APPLICATION\n*************************************************");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("---------------------------------------------------\n" +
+                    "---------------------------------------------------\n" +
+                    "             MY GARAGE APPLICATION\n" +
+                    "--------------------------------------------------\n" +
+                    "--------------------------------------------------");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("1. CREATE A GARAGE.");
                 Console.WriteLine("2. PARK OR UNPARK VEHICLES.");
                 Console.WriteLine("3. SHOW ALL VEHICLES");
@@ -41,36 +49,46 @@ namespace Garage
             }
         }
         #endregion
-        #region CreateGarage
+        #region CREATE GARAGE METHOD
         public void CreateGarage()
         {
             Console.Clear();
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("\n**************************\n CREATE GARAGE\n************************");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\n------------------\n  CREATE GARAGE\n------------------");
+                Console.ForegroundColor = ConsoleColor.White;
+                CreateGarage:
                 Console.WriteLine("HOW BIG DO YOU WANT YOUR GARAGE TO BE :");
                 string sMaxCap = Console.ReadLine();
                 if (sMaxCap == "0")
                 {
-                    Console.WriteLine("GARAGE SIZE CANNOT BE ZERO !!");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("INVALID INPUT. PLEASE ENTER A NON ZERO NUMBER!!");
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.ReadLine();
-                    return;
+                    goto CreateGarage;
                 }
                 while (!int.TryParse(sMaxCap, out MaxCapDesired))
                 {
-                    if (MaxCapDesired <= 0)
+                    if (MaxCapDesired < 0 || MaxCapDesired == 0)
                     {
-                        Console.WriteLine("INVALID INPUT!!");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("INVALID INPUT. PLEASE ENTER A NON ZERO NUMBER!!");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        goto CreateGarage;
                     }
-                    sMaxCap = Console.ReadLine();
+                    else
+                    {
+                        sMaxCap = Console.ReadLine();
+                    }
                 }
                 allCapacity = new Garage<Vehicles>(MaxCapDesired);
-                //Console.ReadLine();
                 Console.WriteLine("PRESS ENTER TO EXIT TO MAIN MENU");
                 Console.WriteLine("PRESS 0 TO RECREATE YOUR GARAGE");
-                string inputForSeitch = Console.ReadLine();
-                switch (inputForSeitch)
+                string inputForSwitch = Console.ReadLine();
+                switch (inputForSwitch)
                 {
                     case "0":
                         break;
@@ -80,17 +98,19 @@ namespace Garage
             }
         }
         #endregion
-        #region Park and unpark vehicles
+        #region SWITCH CASE FOR ADDING VEHICLES
         public void ParkOrUnpark()
         {
             Console.Clear();
 
             while (true)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("USE + TO ADD AND\n" +
                                   "USE - TO REMOVE\n" +
                                   "USE 0 TO EXIT TO MAIN MENU\n"
-                                /*  "USE 9 TO CLEAN THE WINDOW*/);
+                                  );
+                Console.ForegroundColor = ConsoleColor.White;
 
                 string switchinput01 = Console.ReadLine();
                 Console.Clear();
@@ -110,12 +130,15 @@ namespace Garage
                         if (MaxCapDesired <= 0)
                         {
                             Console.Clear();
-                            Console.WriteLine("++++++++++++++++++++++\n NO GARAGE  EXISTS\n" +
-                                "CREATE A GARAGE FIRST \n++++++++++++++++++++++");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("------------------------------------------------" +
+                                "\nNO GARAGE  EXISTs. PLEASE CREATE A GARAGE FIRST \n" +
+                                "------------------------------------------------");
+                                              Console.ForegroundColor = ConsoleColor.White;
                         }
                         else
                         {
-                            #region SWITCH CASE FOR ADDING VEHICLES
+
                             //  Garage<Vehicles> newGarage = new Garage<Vehicles>(MaxCapDesired);
                             switch (input)
                             {
@@ -124,48 +147,120 @@ namespace Garage
                                     Console.WriteLine("YOU ARE WORKING WITH 1 CAR\n");
                                     Car newcar = new Car();
                                     newcar.VehTYPE = "CAR";
+                                    CarRegNo:
                                     Console.WriteLine("WHAT IS THE REG.NO OF THE VEHICLE?");
                                     var myCarname = Console.ReadLine();
+                                    if (String.IsNullOrEmpty(myCarname ))
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("REG. NO. CANNOT BE EMPTY, PLEASE ENTER A REG. NO.");
+                                        Console.ReadLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        goto CarRegNo;
+                                    }
+                                    else
+                                    { 
                                     newcar.Name = myCarname;
+                                    }
                                     Console.WriteLine("WHAT IS THE TYPE OF FUEL USED?");
                                     var myCarFuel = Console.ReadLine();
                                     newcar.FuelType = myCarFuel;
+                                    CarEng:
                                     Console.WriteLine("HOW MANY ENGINES DOES THIS VEHICLE HAS?");
                                     string SmyCarEng = Console.ReadLine();
                                     int iMycareng;
                                     if (!int.TryParse(SmyCarEng, out iMycareng))
                                     {
-                                        Console.WriteLine("NUMBER OF ENGINE SHOULD BE NUMERIC");
-                                        break;
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("NO. OF ENGINE MUST BE NUMERIC.PLEASE REENTER THE DETAILS.");
+                                        Console.ReadLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        goto CarEng;
                                     }
                                     else
                                     {
                                         newcar.NoOfEngines = iMycareng;
                                     }
+
+                                    CarSeat:
                                     Console.WriteLine("HOW MANY SEATS DOES THIS VEHICLE HAS?");
-                                    var myCarseats = int.Parse(Console.ReadLine());
-                                    newcar.NoOfSeats = myCarseats;
-                                    allCapacity.AddtoList(newcar);
-                                    //Console.WriteLine("YOU HAVE PARKED \n"+newcar.GarageInfo());
-                                    break;
+                                    string myCarseats = Console.ReadLine();
+                                    int imyCarSeats;
+                                    if(!int.TryParse(myCarseats,out imyCarSeats))
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("NO. OF SEATS MUST BE NUMERIC, PLEASE REENTER THE DETAILS.");
+                                        Console.ReadLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        goto CarSeat;
+                                    }
+                                    else
+                                    {
+                                        newcar.NoOfSeats = imyCarSeats;
+                                        allCapacity.AddtoList(newcar);
+                                    }
+                                   
+                                     break;
                                 //
                                 case "2"://child case of "+" case
-                                    Console.WriteLine("YOU ARE WORKING WITH 2 BUS\n");
+                                    Console.WriteLine("YOU HAVE CHOOSEN BUS\n");
                                     Bus newBus = new Bus();
                                     newBus.VehTYPE = "BUS";
+                                    BusRegno:
                                     Console.WriteLine("WHAT IS THE REG.NO OF THE VEHICLE?");
-                                    var myBusname = Console.ReadLine();
-                                    newBus.Name = myBusname;
+                                   string myBusname = Console.ReadLine();
+                                    if (String.IsNullOrEmpty(myBusname))
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("REG. NO. CANNOT BE EMPTY, PLEASE ENTER A REG. NO.");
+                                        Console.ReadLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        goto BusRegno;
+                                    }
+                                    else
+                                    {
+                                        newBus.Name = myBusname;
+                                    }
                                     Console.WriteLine("WHAT IS THE TYPE OF FUEL USED?");
                                     var myBusFuel = Console.ReadLine();
                                     newBus.FuelType = myBusFuel;
+
+                                    MyBUSengine:
                                     Console.WriteLine("HOW MANY ENGINES DOES THIS VEHICLE HAS?");
-                                    var myBusEng = int.Parse(Console.ReadLine());
-                                    newBus.NoOfEngines = myBusEng;
+                                    string myBusEng = Console.ReadLine();
+                                    int iMyBusEng;
+                                    if (!int.TryParse(myBusEng, out iMyBusEng))
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("NO. OF ENGINE MUST BE NUMERIC, PLEASE REENTER THE DETAILS");
+                                        Console.ReadLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        goto MyBUSengine;
+
+                                    }
+                                    else
+                                    {
+                                        newBus.NoOfEngines = iMyBusEng;
+                                    }
+
+                                    myBUSSEATNO:
                                     Console.WriteLine("HOW MANY SEATS DOES THIS VEHICLE HAS?");
-                                    var myBusseats = int.Parse(Console.ReadLine());
-                                    newBus.NoOfSeats = myBusseats;
-                                    allCapacity.AddtoList(newBus);
+                                    string myBusseats =Console.ReadLine();
+                                    int imybusseats;
+                                    if (!int.TryParse(myBusseats, out imybusseats))
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("NO. OF ENGINE MUST BE NUMERIC, PLEASE REENTER THE DETAILS");
+                                        Console.ReadLine();
+                                        Console.ForegroundColor = ConsoleColor.White;
+                                        goto myBUSSEATNO;
+
+                                    }
+                                    else
+                                    {
+                                        newBus.NoOfSeats = imybusseats;
+                                        allCapacity.AddtoList(newBus);
+                                    }
                                     break;
                                 //
                                 case "3"://child case of "+" case
@@ -242,7 +337,6 @@ namespace Garage
                         }
                         break;// this is for +
                     #endregion SWITCH CASE FOR ADDING VEHICLES END HERE
-
                     #region SWITCH CASE FOR REMOVING VEHICLES
                     case "-":
                         Console.WriteLine("TYPE 1 TO REMOVE CAR\n" +
@@ -337,25 +431,30 @@ namespace Garage
                 }
             }
         }
-        #endregion SWITCH CASE FOR REMOVING VEHICLES END HERE
+        #endregion 
+        #region DISPLAY ALL VEHICLES WITH PROPERTIES BY CALLING GARAGE INFO FROM VEHICLES CLASS WHICH IS OVERRIDDEN BY INDIVIDUAL CLASS GARAGEINFO METHOD
+
         public void ShowAllVehicles()
         {
             if (allCapacity == null)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("SORRY !! NO VEHICLES TO DISPLAY, NO GARAGE NO VEHICLE :(");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.ReadLine();
             }
             else
             {
                 foreach (var Veh in allCapacity)
                 {
-                    Console.WriteLine(Veh.GarageInfo());             
+                    Console.WriteLine(Veh.GarageInfo());
                 }
                 Console.ReadLine();
             }
         }
-
+        #endregion
+        #region DIPLAY COUNT OF VEHICLES BY CALLING METHOD FROM GARAGE CLASS
         public void Vehcount()
         {
             if (allCapacity != null)
@@ -365,10 +464,13 @@ namespace Garage
             else
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("SORRY !! NO VEHICLES TO DISPLAY, NO GARAGE NO VEHICLE :(");
                 Console.ReadLine();
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
+        #endregion
     }
 }
 
@@ -376,4 +478,3 @@ namespace Garage
 
 
 
-#endregion
