@@ -217,12 +217,14 @@ namespace Garage
                 {
                     COUNT++;
                 }
-                Console.WriteLine("THE NUMBER OF VEHICLES WITH NO OF SEATS :: " + seatsearch.Name + " :: IS  " + COUNT);
+                Console.WriteLine("THE NUMBER OF VEHICLES WITH NO OF SEATS :: " + seatsearch.NoOfSeats + " :: IS  " + COUNT);
                 Console.ReadLine();
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("NO VEHICLE FOUND WITH THE SEARCH CRITERIA :(");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.ReadLine();
             }
 
