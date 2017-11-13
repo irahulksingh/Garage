@@ -61,22 +61,18 @@ namespace Garage
         }
         public void RemoveVeh(T input)
         {
+            string Regnotodel1 = input.Name;
+            var match = maxvehicle.Where(stc => stc.Name.Contains(Regnotodel1));
             if (maxvehicle.Count == 0)
             {
                 Console.WriteLine("NO MORE VEHICLES TO REMOVE");
                 return;
             }
 
-            if (count <= maxcapacity)
-
+            else if (match != null && match.Any())
+            /*(count <= maxcapacity)*/
             {
-
-                
                 string Regnotodel = input.Name;
-
-                  
-
-                //if(maxvehicle.First(x => x = Regnotodel.ToString))
                 maxvehicle.RemoveAll(x => x.Name.StartsWith(Regnotodel));
                 Console.ForegroundColor = ConsoleColor.Green;
 
@@ -84,6 +80,12 @@ namespace Garage
                     "YOU HAVE UNPARKED A VEHICLE  :" + Regnotodel +
                     "\n-----------------------------------");
                 count--;
+            }
+            else {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("-------------------------------------\n"+
+                    "NO VEHICLE WITH THAT REG.NO. FOUND.");
+                Console.ResetColor();
             }
             Console.WriteLine("-----------------------------------\n" +
                 "YOUR GARAGE CAN HAVE :" + (maxcapacity - count) + " VEHICLES"+
@@ -138,6 +140,9 @@ namespace Garage
             Console.WriteLine("-----------------------------------------------\n" +
                 "THE TOTAL NO. OF VEHICLES IN YOUR GARAGE IS :" + maxvehicle.Count.ToString() +
                 "\n-----------------------------------------------");
+            Console.WriteLine("---------------------------------------------------------\n" +
+            "THE TOTAL CAPACITY OF VEHICLES IN YOUR GARAGE IS :" + maxcapacity +
+            "\n---------------------------------------------------------");
             Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White;
 
@@ -150,9 +155,40 @@ namespace Garage
         #region CLEAR THE LIST FULLY DELETING THE LIST
         public void Clearall()
         {
-            maxvehicle.Clear();
+            //maxcapacity = 0;
+            //maxvehicle.Clear();
         }
-#endregion
+        #endregion
+        #region SEARCH FOR A VEHICLE
+        public void SEACHALL(T tsearch)
+        {
+            string search = tsearch.Name;
+            var match = maxvehicle.Where(stc => stc.Name.Contains(search));
+            int COUNT = 0;
+            if (maxvehicle.Count == 0)
+            {
+                Console.WriteLine("NO  VEHICLES TO SEARCH");
+                return;
+            }
+
+            if (match != null && match.Any())
+
+            {
+                foreach (var item in maxvehicle)
+                {
+                    COUNT++;
+                  }
+                Console.WriteLine("THE NUMBER OF VEHICLES WITH REG. NO" + tsearch.Name + " IS  " + COUNT);
+                Console.ReadLine();
+           }
+            else
+            {
+                Console.WriteLine("NO VEHICLE FOUND WITH THE SEARCH CRITERIA :(");
+                Console.ReadLine();
+            }
+
+        }
+        #endregion
     }
 
 }

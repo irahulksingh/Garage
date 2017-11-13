@@ -31,7 +31,8 @@ namespace Garage
                 Console.WriteLine("2. PARK OR UNPARK VEHICLES.");
                 Console.WriteLine("3. SHOW ALL VEHICLES");
                 Console.WriteLine("4. COUNT OF VEHICLES");
-                Console.WriteLine("5. DELETE THE GARAGE");
+                Console.WriteLine("5. SEARCH VEHICLES");
+                //Console.WriteLine("6. DELETE THE GARAGE");
 
                 Console.WriteLine("0. EXIT.");
                 string sControl = Console.ReadLine();
@@ -44,7 +45,8 @@ namespace Garage
                         case 2: ParkOrUnpark(); break;
                         case 3: ShowAllVehicles(); break;
                         case 4: Vehcount(); break;
-                        case 5: ClearList();break;
+                        case 5: SearchforaVehicle();break;
+                        //case 6: ClearList();break;
                         case 0: return;
                         default:
                             Console.ForegroundColor = ConsoleColor.Red;
@@ -463,7 +465,7 @@ namespace Garage
                         }
                         break;// this is for +
                     #endregion SWITCH CASE FOR ADDING VEHICLES END HERE
-                    #region SWITCH CASE FOR REMOVING VEHICLES
+        #region SWITCH CASE FOR REMOVING VEHICLES
                     case "-":
                         Console.WriteLine("TYPE 1 TO REMOVE CAR\n" +
                                       "TYPE 2 TO REMOVE BUS\n" +
@@ -585,13 +587,18 @@ namespace Garage
         {
             if (allCapacity == null)
             {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("NO GARAGE EXISTS TO DELETE !!");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.ReadLine();
             }
             else
             {
                 allCapacity.Clearall();
-                Console.WriteLine("GARAGE DELETED");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("GARAGE DELETED !!");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.ReadLine();
             }
         }
@@ -618,7 +625,26 @@ namespace Garage
 
         #endregion
 
-        
+        #region SEARCH FOR A VEHICLE
+        public void SearchforaVehicle()
+        {
+            Vehicles searchveh = new Vehicles();
+            Console.Clear();
+            Console.WriteLine("PLEASE ENTER THE VEHICLE REG. NO. FOR SEARCH :");
+            string Searchfor = Console.ReadLine();
+            searchveh.Name = Searchfor;
+            //searchveh.Name = Searchfor;
+            if (allCapacity != null)
+            {
+                allCapacity.SEACHALL(searchveh);
+            }
+
+
+
+        }
+        #endregion  
+
+
     }
 
 }
