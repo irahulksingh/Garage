@@ -32,7 +32,7 @@ namespace Garage
                 Console.WriteLine("3. SHOW ALL VEHICLES");
                 Console.WriteLine("4. COUNT OF VEHICLES");
                 Console.WriteLine("5. SEARCH VEHICLES");
-                //Console.WriteLine("6. DELETE THE GARAGE");
+                //Console.WriteLine("6. WHEELS");
 
                 Console.WriteLine("0. EXIT.");
                 string sControl = Console.ReadLine();
@@ -45,8 +45,8 @@ namespace Garage
                         case 2: ParkOrUnpark(); break;
                         case 3: ShowAllVehicles(); break;
                         case 4: Vehcount(); break;
-                        case 5: SearchforaVehicle();break;
-                        //case 6: ClearList();break;
+                        case 5:SEARCHCRITERIA();break;
+                        //case 6: Searchforwithwheels();break;
                         case 0: return;
                         default:
                             Console.ForegroundColor = ConsoleColor.Red;
@@ -630,7 +630,7 @@ namespace Garage
         {
             Vehicles searchveh = new Vehicles();
             Console.Clear();
-            Console.WriteLine("PLEASE ENTER THE VEHICLE REG. NO. FOR SEARCH :");
+            Console.WriteLine("PLEASE ENTER THE FUEL TYPE FOR THE VEHICLE TO SEARCH :");
             string Searchfor = Console.ReadLine();
             searchveh.FuelType = Searchfor;
             //searchveh.Name = Searchfor;
@@ -662,12 +662,44 @@ namespace Garage
                 searchveh.NoOfSeats = iSearchforseats;
                 if (allCapacity != null)
                 {
-                    allCapacity.SearchRegNo(searchveh);
+                    allCapacity.SearchbyseatNo(searchveh);
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("NO VEHICLES IN THE GARAGE");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.ReadLine();
                 }
             }
 
                }
         #endregion  
+        public void SEARCHCRITERIA()
+        {
+            Console.Clear();
+            Console.WriteLine("PLEASE SELECT THE SEARCH CRITERIA ");
+            Console.WriteLine("1. SEARCH BY FUEL TYPE ");
+            Console.WriteLine("2. SEARCH BY NO. OF SEATS ");
+            Console.WriteLine("0. EXIT ");
+
+            string sCriteria = Console.ReadLine();
+
+            switch(sCriteria)
+            { 
+                case "1":SearchforaVehicle();
+                break;
+                case "2":Searchforwithwheels();
+                    break;
+                case "0":
+                    return;
+                default:
+                    break;
+            }
+
+
+
+        }
 
 
     }
