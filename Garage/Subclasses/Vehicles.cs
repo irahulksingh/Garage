@@ -8,6 +8,14 @@ namespace Garage
 {
    public class Vehicles
     {
+        private string vehtype;
+
+        public string VehTYPE
+        {
+            get { return vehtype; }
+            set { vehtype = value; }
+        }
+
         private string  name;    
         private int noofengines;
         private string fueltype;
@@ -20,13 +28,41 @@ namespace Garage
         public int NoOfSeats { get { return noofseats; } set { noofseats = value; } }
        
         public virtual string GarageInfo()
+
+      {
+            
+            Console.ForegroundColor = ConsoleColor.Green;
+            return
+                "\n-------------------------------------------------------" +
+                "\n-------------------------------------------------------\n"+
+                "THIS VEHICLE IS A : " + VehTYPE+
+                "\nTHE REG.NO OF THE CAR YOU HAVE PARKED IS :" + Name +
+               "\nTHE NO. OF ENGINES IN THIS VEHICLE  :" + NoOfEngines +
+                "\nTHIS VEHICLE RUNS ON :" + FuelType + "\nTHIS VEHICLE HAS  ::" + NoOfSeats + " :: SEAT" +
+                "\n-------------------------------------------------------"+
+                "\n-------------------------------------------------------"
+                ;
+            
+        }
+
+        public virtual string FindDescription()
+
         {
-            return "The Vehicle Name in the garage is :" + Name +
-                "\nThe Vehicle in garage now has :" + NoOfEngines +
-                "\nThis vehicel has a Fuel type of :" + FuelType +"\nThis vehicle has" + NoOfSeats + " seats :" ;
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            return
+                "\n-------------------------------------------------------" +
+                "\n-------------------------------------------------------\n" +
+                "THIS VEHICLE IS A : " + VehTYPE +
+                "\nTHE REG.NO OF THE CAR YOU HAVE PARKED IS :" + Name +
+               "\nTHE NO. OF ENGINES IN THIS VEHICLE  :" + NoOfEngines +
+                "\nTHIS VEHICLE RUNS ON :" + FuelType + "\nTHIS VEHICLE HAS  ::" + NoOfSeats + " :: SEAT" +
+                "\n-------------------------------------------------------" +
+                "\n-------------------------------------------------------"
+                ;
 
         }
 
-     
+
     }
 }

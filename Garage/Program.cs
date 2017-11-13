@@ -11,12 +11,7 @@ namespace Garage
         static void Main(string[] args)
         {
             UserInterface gg = new UserInterface();
-            //GarageHandler gg = new GarageHandler();
             gg.mainmenu();
-
-                        //Console.WriteLine("the garage volume is ");
-            //Console.ReadLine();
-
         }
     }
 }

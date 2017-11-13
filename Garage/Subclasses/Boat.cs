@@ -19,6 +19,14 @@ namespace Garage.Subclasses
             NoOfSeats = noseats;
 
         }
+        public override string GarageInfo()
+        {
+            return base.GarageInfo();
+            //"THE REG.NO OF THE BOAT YOU HAVE PARKED IS :" + Name +
+            //    "\nTHE NO. OF ENGINES IN THIS VEHICLE  :" + NoOfEngines +
+            //    "\nTHIS VEHICLE RUNS ON :" + FuelType + "\nTHIS VEICLE HAS  ::" + NoOfSeats + " :: SEAT" + "\n ------------------------------------------------------------------";
+
+        }
 
     }
 }
