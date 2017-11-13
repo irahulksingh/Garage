@@ -632,16 +632,41 @@ namespace Garage
             Console.Clear();
             Console.WriteLine("PLEASE ENTER THE VEHICLE REG. NO. FOR SEARCH :");
             string Searchfor = Console.ReadLine();
-            searchveh.Name = Searchfor;
+            searchveh.FuelType = Searchfor;
             //searchveh.Name = Searchfor;
             if (allCapacity != null)
             {
-                allCapacity.SEACHALL(searchveh);
+                allCapacity.SearchRegNo(searchveh);
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("NO VEHICLES IN THE GARAGE");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.ReadLine();
             }
 
 
 
         }
+        public void Searchforwithwheels()
+        {
+            Vehicles searchveh = new Vehicles();
+            Console.Clear();
+            Console.WriteLine("PLEASE ENTER THE NO OF SEATS IN A VEHICLE TO SEARCH FOR :");
+            string Searchforseats = Console.ReadLine();
+            int iSearchforseats;
+
+            if (int.TryParse(Searchforseats,out iSearchforseats))
+            {
+                searchveh.NoOfSeats = iSearchforseats;
+                if (allCapacity != null)
+                {
+                    allCapacity.SearchRegNo(searchveh);
+                }
+            }
+
+               }
         #endregion  
 
 

@@ -140,9 +140,9 @@ namespace Garage
             Console.WriteLine("-----------------------------------------------\n" +
                 "THE TOTAL NO. OF VEHICLES IN YOUR GARAGE IS :" + maxvehicle.Count.ToString() +
                 "\n-----------------------------------------------");
-            Console.WriteLine("---------------------------------------------------------\n" +
+            Console.WriteLine("-----------------------------------------------------\n" +
             "THE TOTAL CAPACITY OF VEHICLES IN YOUR GARAGE IS :" + maxcapacity +
-            "\n---------------------------------------------------------");
+            "\n-----------------------------------------------------");
             Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White;
 
@@ -160,35 +160,67 @@ namespace Garage
         }
         #endregion
         #region SEARCH FOR A VEHICLE
-        public void SEACHALL(T tsearch)
+        public void SearchRegNo(T tsearch)
         {
-            string search = tsearch.Name;
-            var match = maxvehicle.Where(stc => stc.Name.Contains(search));
+            string search = tsearch.FuelType;
+            var match = maxvehicle.Where(stc => stc.FuelType.Contains(search));
             int COUNT = 0;
             if (maxvehicle.Count == 0)
             {
                 Console.WriteLine("NO  VEHICLES TO SEARCH");
+                Console.ReadLine();
                 return;
             }
 
             if (match != null && match.Any())
 
             {
-                foreach (var item in maxvehicle)
+                foreach (var item in match)
                 {
-                    COUNT++;
-                  }
-                Console.WriteLine("THE NUMBER OF VEHICLES WITH REG. NO" + tsearch.Name + " IS  " + COUNT);
+                      COUNT++;
+                }
+                Console.WriteLine("THE NUMBER OF VEHICLES RUNNING WITH FUEL TYPE " + search + " IS  " + COUNT);
                 Console.ReadLine();
            }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("NO VEHICLE FOUND WITH THE SEARCH CRITERIA :(");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.ReadLine();
             }
 
         }
         #endregion
+
+        //public void SearchbyseatNo(T seatsearch)
+        //{
+        //   int search = seatsearch.NoOfSeats;
+        //    var match = maxvehicle.Where(stc => stc.Name.Contains(search));
+        //    int COUNT = 0;
+        //    if (maxvehicle.Count == 0)
+        //    {
+        //        Console.WriteLine("NO  VEHICLES TO SEARCH");
+        //        return;
+        //    }
+
+        //    if (match != null && match.Any())
+
+        //    {
+        //        foreach (var item in match)
+        //        {
+        //            COUNT++;
+        //        }
+        //        Console.WriteLine("THE NUMBER OF VEHICLES WITH NO OF SEATS :: " +  seatsearch.Name + " :: IS  " + COUNT);
+        //        Console.ReadLine();
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("NO VEHICLE FOUND WITH THE SEARCH CRITERIA :(");
+        //        Console.ReadLine();
+        //    }
+
+        //}
     }
 
 }
