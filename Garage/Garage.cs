@@ -193,35 +193,41 @@ namespace Garage
         }
         #endregion
 
-        //public void SearchbyseatNo(T seatsearch)
-        //{
-        //   int search = seatsearch.NoOfSeats;
-        //    var match = maxvehicle.Where(stc => stc.Name.Contains(search));
-        //    int COUNT = 0;
-        //    if (maxvehicle.Count == 0)
-        //    {
-        //        Console.WriteLine("NO  VEHICLES TO SEARCH");
-        //        return;
-        //    }
+        public void SearchbyseatNo(T seatsearch)
+        {
+            int search = seatsearch.NoOfSeats;
+            var match = maxvehicle.Where(stc => stc.NoOfSeats.Equals(search));
+            int COUNT = 0;
+            if (maxvehicle.Count == 0)
+            { 
+           
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("NO VEHICLES IN THE GARAGE");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.ReadLine();
+               
 
-        //    if (match != null && match.Any())
+                return;
+            }
 
-        //    {
-        //        foreach (var item in match)
-        //        {
-        //            COUNT++;
-        //        }
-        //        Console.WriteLine("THE NUMBER OF VEHICLES WITH NO OF SEATS :: " +  seatsearch.Name + " :: IS  " + COUNT);
-        //        Console.ReadLine();
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("NO VEHICLE FOUND WITH THE SEARCH CRITERIA :(");
-        //        Console.ReadLine();
-        //    }
+            if (match != null && match.Any())
 
-        //}
-    }
+            {
+                foreach (var item in match)
+                {
+                    COUNT++;
+                }
+                Console.WriteLine("THE NUMBER OF VEHICLES WITH NO OF SEATS :: " + seatsearch.Name + " :: IS  " + COUNT);
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("NO VEHICLE FOUND WITH THE SEARCH CRITERIA :(");
+                Console.ReadLine();
+            }
+
+          }
+        }
 
 }
 
